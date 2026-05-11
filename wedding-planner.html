@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cassie & Jordan · Wedding Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ivory: #faf7f2;
+    --ivory-dark: #f0ebe0;
+    --ivory-border: #e8e0d0;
+    --sage: #7a8c6e;
+    --sage-light: #a8b89a;
+    --sage-pale: #e8ede4;
+    --sage-dark: #4a5c40;
+    --text-dark: #2c2820;
+    --text-mid: #6b6258;
+    --text-light: #9e9488;
+    --gold: #c9a96e;
+    --gold-light: #e8d5b0;
+    --white: #ffffff;
+    --nav-h: 64px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--ivory);
+    color: var(--text-dark);
+    font-weight: 300;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--white);
+    border-bottom: 1px solid var(--ivory-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    gap: 2rem;
+  }
+
+  .header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--text-dark);
+    white-space: nowrap;
+  }
+
+  .header-title span { color: var(--sage); }
+
+  nav {
+    display: flex;
+    gap: 0.25rem;
+    overflow-x: auto;
+    flex: 1;
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+
+  nav button {
+    background: none;
+    border: none;
+    padding: 0.4rem 0.9rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    cursor: pointer;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+
+  nav button:hover { color: var(--text-dark); background: var(--ivory-dark); }
+  nav button.active { color: var(--sage-dark); background: var(--sage-pale); font-weight: 500; }
+
+  .countdown {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    font-weight: 400;
+  }
+  .countdown strong { color: var(--sage); font-weight: 500; }
+
+  /* ── MAIN ── */
+  main { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--ivory-border);
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--sage); }
+
+  .hero-date {
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    color: var(--text-mid);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-venue {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--text-light);
+  }
+
+  /* ── DASHBOARD CARDS ── */
+  .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+
+  .dash-card {
+    background: var(--white);
+    border: 1px solid var(--ivory-border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .dash-card:hover { border-color: var(--sage-light); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(122,140,110,0.1); }
+
+  .dash-card-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .dash-card-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.25rem; }
+  .dash-card-value { font-size: 1.4rem; font-weight: 500; color: var(--text-dark); }
+  .dash-card-sub { font-size: 0.8rem; color: var(--text-mid); margin-top: 0.15rem; }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--ivory-border);
+  }
+
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--text-dark);
+  }
+
+  .section-header p { font-size: 0.85rem; color: var(--text-light); }
+
+  /* ── ADD BUTTON ── */
+  .btn-add {
+    background: var(--sage);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1.1rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-add:hover { background: var(--sage-dark); }
+
+  .btn-sm {
+    background: none;
+    border: 1px solid var(--ivory-border);
+    padding: 0.3rem 0.7rem;
+    font-size: 0.75rem;
+    font-family: 'Jost', sans-serif;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--text-mid);
+    transition: all 0.2s;
+  }
+  .btn-sm:hover { border-color: var(--sage-light); color: var(--sage-dark); }
+  .btn-sm.danger:hover { border-color: #e24b4a; color: #a32d2d; }
+
+  /* ── TABLE ── */
+  .table-wrap { overflow-x: auto; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+
+  th {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    font-weight: 400;
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid var(--ivory-border);
+    background: var(--ivory);
+  }
+
+  td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--ivory-dark);
+    color: var(--text-dark);
+    vertical-align: middle;
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--ivory); }
+
+  .table-card { background: var(--white); border: 1px solid var(--ivory-border); border-radius: 10px; overflow: hidden; margin-bottom: 1.5rem; }
+
+  /* ── BADGES ── */
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    font-weight: 400;
+  }
+  .badge-green { background: #eaf3de; color: #3b6d11; }
+  .badge-amber { background: #faeeda; color: #854f0b; }
+  .badge-gray  { background: var(--ivory-dark); color: var(--text-mid); }
+  .badge-sage  { background: var(--sage-pale); color: var(--sage-dark); }
+  .badge-red   { background: #fcebeb; color: #a32d2d; }
+
+  /* ── BUDGET ── */
+  .budget-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+
+  .budget-stat { background: var(--white); border: 1px solid var(--ivory-border); border-radius: 10px; padding: 1.2rem 1.25rem; }
+  .budget-stat label { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); display: block; margin-bottom: 0.3rem; }
+  .budget-stat .amount { font-size: 1.6rem; font-weight: 500; color: var(--text-dark); }
+  .budget-stat .amount.sage { color: var(--sage); }
+  .budget-stat .amount.gold { color: var(--gold); }
+
+  .progress-bar-wrap { background: var(--ivory-dark); border-radius: 4px; height: 6px; overflow: hidden; margin-top: 0.4rem; }
+  .progress-bar { height: 100%; background: var(--sage); border-radius: 4px; transition: width 0.6s ease; }
+
+  /* ── GUEST LIST ── */
+  .rsvp-summary { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .rsvp-pill { background: var(--white); border: 1px solid var(--ivory-border); border-radius: 8px; padding: 0.6rem 1rem; font-size: 0.82rem; }
+  .rsvp-pill strong { font-size: 1.1rem; font-weight: 500; }
+  .rsvp-pill.accepted strong { color: var(--sage); }
+  .rsvp-pill.pending strong { color: var(--gold); }
+  .rsvp-pill.declined strong { color: #a32d2d; }
+  .rsvp-pill.total strong { color: var(--text-dark); }
+
+  .filter-bar { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .filter-btn { background: none; border: 1px solid var(--ivory-border); padding: 0.35rem 0.8rem; font-size: 0.75rem; font-family: 'Jost', sans-serif; border-radius: 20px; cursor: pointer; color: var(--text-mid); transition: all 0.2s; }
+  .filter-btn:hover, .filter-btn.active { background: var(--sage-pale); border-color: var(--sage-light); color: var(--sage-dark); }
+
+  /* ── TIMELINE / SCHEDULE ── */
+  .timeline { position: relative; padding-left: 1.5rem; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--ivory-border); }
+
+  .timeline-item { position: relative; margin-bottom: 1.5rem; }
+  .timeline-item::before { content: ''; position: absolute; left: -1.5rem; top: 0.5rem; width: 9px; height: 9px; border-radius: 50%; background: var(--sage-light); border: 2px solid var(--white); box-shadow: 0 0 0 1px var(--sage-light); }
+  .timeline-item.key::before { background: var(--sage); box-shadow: 0 0 0 2px var(--sage-light); }
+
+  .timeline-card { background: var(--white); border: 1px solid var(--ivory-border); border-radius: 10px; padding: 1rem 1.25rem; }
+  .timeline-time { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.2rem; }
+  .timeline-title { font-size: 0.95rem; font-weight: 500; color: var(--text-dark); margin-bottom: 0.1rem; }
+  .timeline-location { font-size: 0.82rem; color: var(--text-mid); }
+  .timeline-type-badge { float: right; margin-top: 0.1rem; }
+
+  /* ── CHECKLIST ── */
+  .checklist-group { margin-bottom: 2rem; }
+  .checklist-group h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--text-mid); margin-bottom: 0.75rem; letter-spacing: 0.04em; }
+
+  .check-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 1rem; background: var(--white); border: 1px solid var(--ivory-border); border-radius: 8px; margin-bottom: 0.4rem; cursor: pointer; transition: all 0.2s; }
+  .check-item:hover { border-color: var(--sage-light); }
+  .check-item.done { opacity: 0.55; }
+  .check-item.done .check-label { text-decoration: line-through; }
+
+  .check-box { width: 18px; height: 18px; border: 1.5px solid var(--ivory-border); border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+  .check-item.done .check-box { background: var(--sage); border-color: var(--sage); }
+  .check-item.done .check-box::after { content: '✓'; font-size: 0.7rem; color: white; }
+
+  .check-label { font-size: 0.875rem; flex: 1; }
+  .check-date { font-size: 0.75rem; color: var(--text-light); }
+
+  /* ── VENDORS ── */
+  .vendor-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+
+  .vendor-card { background: var(--white); border: 1px solid var(--ivory-border); border-radius: 10px; padding: 1.25rem; transition: all 0.2s; }
+  .vendor-card:hover { border-color: var(--sage-light); box-shadow: 0 2px 12px rgba(122,140,110,0.08); }
+  .vendor-card-type { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage); font-weight: 500; margin-bottom: 0.5rem; }
+  .vendor-card-name { font-size: 1rem; font-weight: 500; color: var(--text-dark); margin-bottom: 0.2rem; }
+  .vendor-card-contact { font-size: 0.82rem; color: var(--text-mid); margin-bottom: 0.8rem; }
+  .vendor-card-meta { font-size: 0.78rem; color: var(--text-light); display: flex; flex-direction: column; gap: 0.2rem; }
+  .vendor-tbd { border-style: dashed; }
+  .vendor-tbd .vendor-card-name { color: var(--text-light); font-style: italic; }
+
+  /* ── SEATING ── */
+  .seating-controls { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; align-items: center; flex-wrap: wrap; }
+  .seating-controls label { font-size: 0.8rem; color: var(--text-mid); }
+  .seating-controls input { border: 1px solid var(--ivory-border); border-radius: 5px; padding: 0.35rem 0.7rem; font-family: 'Jost', sans-serif; font-size: 0.85rem; background: var(--white); color: var(--text-dark); }
+
+  .table-layout { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+
+  .seating-table { background: var(--white); border: 1px solid var(--ivory-border); border-radius: 10px; padding: 1.25rem; min-width: 200px; flex: 1 1 200px; }
+  .seating-table-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+  .seating-table-name { font-weight: 500; font-size: 0.9rem; }
+  .seating-table-count { font-size: 0.75rem; color: var(--text-light); }
+  .seat-guest { display: flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0; border-bottom: 1px solid var(--ivory-dark); font-size: 0.82rem; }
+  .seat-guest:last-child { border-bottom: none; }
+  .seat-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--sage-light); flex-shrink: 0; }
+
+  /* ── MOODBOARD ── */
+  .mood-grid { columns: 3 200px; gap: 1rem; }
+  @media (max-width: 600px) { .mood-grid { columns: 2 150px; } }
+
+  .mood-item { break-inside: avoid; margin-bottom: 1rem; border-radius: 10px; overflow: hidden; border: 1px solid var(--ivory-border); background: var(--white); }
+  .mood-swatch { height: 80px; }
+  .mood-label { padding: 0.6rem 0.75rem; font-size: 0.78rem; color: var(--text-mid); }
+  .mood-caption { padding: 0 0.75rem 0.6rem; font-size: 0.7rem; color: var(--text-light); }
+
+  /* Color palette swatches */
+  .palette-row { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .swatch { flex: 1; height: 48px; border-radius: 6px; display: flex; align-items: flex-end; padding: 0.3rem; }
+  .swatch span { font-size: 0.65rem; letter-spacing: 0.06em; }
+
+  /* ── MENU ── */
+  .menu-section { margin-bottom: 2rem; }
+  .menu-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; font-weight: 400; color: var(--sage-dark); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--ivory-border); }
+
+  .menu-item { padding: 0.75rem 0; border-bottom: 1px solid var(--ivory-dark); }
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item-name { font-size: 0.92rem; font-weight: 500; color: var(--text-dark); }
+  .menu-item-desc { font-size: 0.8rem; color: var(--text-mid); margin-top: 0.15rem; font-style: italic; }
+  .menu-item-note { font-size: 0.75rem; color: var(--sage); margin-top: 0.1rem; }
+
+  /* ── MODAL ── */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(44,40,32,0.4); z-index: 200; align-items: center; justify-content: center; padding: 1rem; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--white); border-radius: 12px; padding: 2rem; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; }
+  .modal h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 1.25rem; }
+  .form-group { margin-bottom: 1rem; }
+  .form-group label { display: block; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.35rem; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; border: 1px solid var(--ivory-border); border-radius: 6px;
+    padding: 0.55rem 0.8rem; font-family: 'Jost', sans-serif; font-size: 0.875rem;
+    background: var(--ivory); color: var(--text-dark); outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--sage-light); background: var(--white); }
+  .modal-actions { display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.5rem; }
+  .btn-cancel { background: none; border: 1px solid var(--ivory-border); padding: 0.5rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.82rem; border-radius: 5px; cursor: pointer; color: var(--text-mid); }
+  .btn-cancel:hover { background: var(--ivory-dark); }
+  .btn-save { background: var(--sage); color: var(--white); border: none; padding: 0.5rem 1.2rem; font-family: 'Jost', sans-serif; font-size: 0.82rem; border-radius: 5px; cursor: pointer; }
+  .btn-save:hover { background: var(--sage-dark); }
+
+  /* ── SEARCH ── */
+  .search-wrap { position: relative; margin-bottom: 1rem; }
+  .search-wrap input { width: 100%; border: 1px solid var(--ivory-border); border-radius: 6px; padding: 0.55rem 0.8rem 0.55rem 2.2rem; font-family: 'Jost', sans-serif; font-size: 0.875rem; background: var(--white); color: var(--text-dark); outline: none; }
+  .search-wrap input:focus { border-color: var(--sage-light); }
+  .search-icon { position: absolute; left: 0.7rem; top: 50%; transform: translateY(-50%); color: var(--text-light); font-size: 0.9rem; pointer-events: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    header { padding: 0 1rem; gap: 0.75rem; }
+    main { padding: 1.5rem 1rem 3rem; }
+    .hero h1 { font-size: 2.4rem; }
+    .mood-grid { columns: 2 120px; }
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty { text-align: center; padding: 3rem 1rem; color: var(--text-light); }
+  .empty-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .empty p { font-size: 0.875rem; }
+
+  /* Print-friendly */
+  @media print { header { position: relative; } .btn-add, .btn-sm, .filter-bar { display: none; } .section { display: block !important; } }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-title">Cassie <span>&</span> Jordan</div>
+  <nav id="nav">
+    <button class="active" onclick="showSection('overview')">Overview</button>
+    <button onclick="showSection('budget')">Budget</button>
+    <button onclick="showSection('guests')">Guests</button>
+    <button onclick="showSection('vendors')">Vendors</button>
+    <button onclick="showSection('schedule')">Schedule</button>
+    <button onclick="showSection('checklist')">Checklist</button>
+    <button onclick="showSection('seating')">Seating</button>
+    <button onclick="showSection('menu')">Menu</button>
+    <button onclick="showSection('moodboard')">Moodboard</button>
+  </nav>
+  <div class="countdown" id="countdown">Loading…</div>
+</header>
+
+<!-- MAIN -->
+<main>
+
+  <!-- ═══════════════ OVERVIEW ═══════════════ -->
+  <div id="sec-overview" class="section active">
+    <div class="hero">
+      <p class="hero-eyebrow">Wedding Planning · Private Dashboard</p>
+      <h1>Cassie Dell<br><em>&</em> Jordan Adelman</h1>
+      <p class="hero-date">November 9, 2026</p>
+      <p class="hero-venue">Edgewood Tahoe Resort · South Lake Tahoe, CA</p>
+    </div>
+
+    <div class="dash-grid" id="dash-cards"></div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;" class="dash-two-col">
+      <div>
+        <div class="section-header" style="margin-bottom:1rem;padding-bottom:0.5rem;">
+          <h2 style="font-size:1.3rem;">Upcoming</h2>
+        </div>
+        <div id="upcoming-events"></div>
+      </div>
+      <div>
+        <div class="section-header" style="margin-bottom:1rem;padding-bottom:0.5rem;">
+          <h2 style="font-size:1.3rem;">To-Do Next</h2>
+        </div>
+        <div id="upcoming-tasks"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ BUDGET ═══════════════ -->
+  <div id="sec-budget" class="section">
+    <div class="section-header">
+      <div><h2>Budget Tracker</h2></div>
+      <button class="btn-add" onclick="openModal('budget')">+ Add Item</button>
+    </div>
+
+    <div class="budget-summary" id="budget-summary"></div>
+
+    <div class="table-card">
+      <div class="table-wrap">
+        <table id="budget-table">
+          <thead>
+            <tr>
+              <th>Item</th><th>Category</th><th>Budgeted</th><th>Paid</th><th>Due / Notes</th><th>Paid By</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="budget-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ GUESTS ═══════════════ -->
+  <div id="sec-guests" class="section">
+    <div class="section-header">
+      <div><h2>Guest List</h2></div>
+      <button class="btn-add" onclick="openModal('guest')">+ Add Guest</button>
+    </div>
+
+    <div class="rsvp-summary" id="rsvp-summary"></div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterGuests('all',this)">All</button>
+      <button class="filter-btn" onclick="filterGuests('Accepted',this)">Accepted</button>
+      <button class="filter-btn" onclick="filterGuests('Pending',this)">Pending</button>
+      <button class="filter-btn" onclick="filterGuests('Declined',this)">Declined</button>
+    </div>
+
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Search guests…" id="guest-search" oninput="renderGuests()">
+    </div>
+
+    <div class="table-card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Name</th><th>Address</th><th>Phone</th><th>RSVP</th><th>Notes</th><th></th></tr>
+          </thead>
+          <tbody id="guest-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ VENDORS ═══════════════ -->
+  <div id="sec-vendors" class="section">
+    <div class="section-header">
+      <div><h2>Vendor List</h2></div>
+      <button class="btn-add" onclick="openModal('vendor')">+ Add Vendor</button>
+    </div>
+    <div class="vendor-grid" id="vendor-grid"></div>
+  </div>
+
+  <!-- ═══════════════ SCHEDULE ═══════════════ -->
+  <div id="sec-schedule" class="section">
+    <div class="section-header">
+      <div><h2>Event Schedule</h2><p>November 9, 2026 · Edgewood Tahoe Resort</p></div>
+      <button class="btn-add" onclick="openModal('schedule')">+ Add Event</button>
+    </div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+
+  <!-- ═══════════════ CHECKLIST ═══════════════ -->
+  <div id="sec-checklist" class="section">
+    <div class="section-header">
+      <div><h2>Planning Checklist</h2></div>
+      <button class="btn-add" onclick="openModal('task')">+ Add Task</button>
+    </div>
+    <div id="checklist-wrap"></div>
+  </div>
+
+  <!-- ═══════════════ SEATING ═══════════════ -->
+  <div id="sec-seating" class="section">
+    <div class="section-header">
+      <div><h2>Seating Chart</h2></div>
+      <button class="btn-add" onclick="openModal('table')">+ Add Table</button>
+    </div>
+    <div class="table-layout" id="seating-layout"></div>
+  </div>
+
+  <!-- ═══════════════ MENU ═══════════════ -->
+  <div id="sec-menu" class="section">
+    <div class="section-header">
+      <div><h2>Menu Planning</h2><p>The Edge Restaurant & Lounge · Edgewood Tahoe Resort</p></div>
+      <button class="btn-add" onclick="openModal('menuitem')">+ Add Item</button>
+    </div>
+    <div id="menu-wrap"></div>
+  </div>
+
+  <!-- ═══════════════ MOODBOARD ═══════════════ -->
+  <div id="sec-moodboard" class="section">
+    <div class="section-header">
+      <div><h2>Moodboard</h2><p>Palette, inspiration & aesthetic direction</p></div>
+    </div>
+
+    <div style="margin-bottom:2rem;">
+      <p style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);margin-bottom:0.75rem;">Color Palette</p>
+      <div class="palette-row">
+        <div class="swatch" style="background:#faf7f2;border:1px solid #e8e0d0;"><span style="color:#9e9488;">Ivory</span></div>
+        <div class="swatch" style="background:#e8ede4;"><span style="color:#7a8c6e;">Pale Sage</span></div>
+        <div class="swatch" style="background:#a8b89a;"><span style="color:#4a5c40;">Sage</span></div>
+        <div class="swatch" style="background:#7a8c6e;"><span style="color:#fff;">Forest</span></div>
+        <div class="swatch" style="background:#c9a96e;"><span style="color:#fff;">Gold</span></div>
+        <div class="swatch" style="background:#2c2820;"><span style="color:#9e9488;">Espresso</span></div>
+      </div>
+    </div>
+
+    <div class="mood-grid">
+      <div class="mood-item">
+        <div class="mood-swatch" style="background:linear-gradient(135deg,#e8ede4,#a8b89a);"></div>
+        <div class="mood-label">Sage & Ivory</div>
+        <div class="mood-caption">Primary palette · Natural, soft, romantic</div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-swatch" style="background:#faf7f2; display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:#7a8c6e;">Cassie & Jordan</div>
+        <div class="mood-label">Typography Direction</div>
+        <div class="mood-caption">Cormorant Garamond · Elegant serif for display</div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-swatch" style="background:linear-gradient(180deg,#4a5c40,#7a8c6e);"></div>
+        <div class="mood-label">Forest Gradient</div>
+        <div class="mood-caption">Lake Tahoe pines · depth & texture</div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-swatch" style="background:#c9a96e;"></div>
+        <div class="mood-label">Gold Accent</div>
+        <div class="mood-caption">Candlelight, rings, warm details</div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-swatch" style="background:#e8d5b0;display:flex;align-items:center;justify-content:center;gap:4px;">
+          <div style="width:18px;height:18px;border-radius:50%;background:#a8b89a;"></div>
+          <div style="width:14px;height:14px;border-radius:50%;background:#7a8c6e;"></div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#c9a96e;"></div>
+        </div>
+        <div class="mood-label">Floral Palette</div>
+        <div class="mood-caption">Eucalyptus, ivory roses, dried grasses</div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-swatch" style="background:#2c2820;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:#c9a96e;letter-spacing:0.15em;text-transform:uppercase;">November 9 · 2026</div>
+        <div class="mood-label">Date Treatment</div>
+        <div class="mood-caption">Espresso on gold · formal stationery feel</div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-swatch" style="background:linear-gradient(135deg,#faf7f2 50%,#e8ede4 50%);"></div>
+        <div class="mood-label">Linen + Sage</div>
+        <div class="mood-caption">Tablecloth texture · earthy neutrals</div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-swatch" style="background:#7a8c6e;display:flex;align-items:center;justify-content:center;">
+          <div style="width:40px;height:40px;border-radius:50%;border:2px solid #c9a96e;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:#faf7f2;">C&J</div>
+        </div>
+        <div class="mood-label">Monogram Direction</div>
+        <div class="mood-caption">Gold ring on sage · clean & classic</div>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;background:var(--white);border:1px solid var(--ivory-border);border-radius:10px;padding:1.5rem;">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--text-mid);margin-bottom:0.75rem;">Venue: Edgewood Tahoe Resort</p>
+      <p style="font-size:0.875rem;color:var(--text-mid);line-height:1.8;">
+        North Room Ceremony · The Edge Restaurant & Lounge Reception<br>
+        <span style="color:var(--text-light);">2264 Lake Forest Rd, South Lake Tahoe, CA · lakeside luxury with mountain views</span>
+      </p>
+      <div style="margin-top:1rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+        <span class="badge badge-sage">Lakeside</span>
+        <span class="badge badge-sage">Mountain Views</span>
+        <span class="badge badge-sage">Outdoor Ceremony</span>
+        <span class="badge badge-sage">November</span>
+        <span class="badge badge-sage">Indoor Reception</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnBg(event)">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════
+
+let data = {
+  budget: [
+    { id:1, name:'North Room Ceremony', category:'Venue', budget:3000, paid:0, date:'2026-05-01', paidBy:'Cassie Dell', notes:'Non-refundable Deposit' },
+    { id:2, name:'The Edge Restaurant', category:'Venue', budget:15000, paid:0, date:'2026-05-01', paidBy:'Cassie Dell', notes:'Non-refundable Deposit' },
+    { id:3, name:'The Edge F&B Minimum (Install. 1)', category:'Food', budget:3000, paid:0, date:'2026-05-27', paidBy:'', notes:'' },
+    { id:4, name:'The Edge F&B Minimum (Install. 2)', category:'Food', budget:3000, paid:0, date:'2026-08-25', paidBy:'', notes:'' },
+    { id:5, name:'F&B Estimated Charges', category:'Food', budget:1968, paid:0, date:'2026-09-24', paidBy:'', notes:'' },
+    { id:6, name:'Denice & Derek Room', category:'Lodging', budget:1161, paid:0, date:'', paidBy:'Cassie Dell', notes:'Conf # 71883SG276973' },
+    { id:7, name:'Erin & Macy Room', category:'Lodging', budget:550, paid:0, date:'', paidBy:'', notes:'' },
+    { id:8, name:'Cassie & Jordan Room', category:'Lodging', budget:1200, paid:0, date:'', paidBy:'', notes:'' },
+    { id:9, name:"Cassie's Dress", category:'Attire', budget:2000, paid:0, date:'', paidBy:'', notes:'' },
+    { id:10, name:'Florals', category:'Vendors', budget:2000, paid:0, date:'', paidBy:'', notes:'' },
+    { id:11, name:'Photographer', category:'Vendors', budget:1500, paid:0, date:'', paidBy:'', notes:'' },
+    { id:12, name:'Hair/Makeup', category:'Vendors', budget:700, paid:0, date:'', paidBy:'', notes:'' },
+    { id:13, name:"Jordan's Suit", category:'Attire', budget:500, paid:0, date:'', paidBy:'', notes:'' },
+    { id:14, name:'Wedding Insurance', category:'Misc/Admin', budget:125, paid:0, date:'', paidBy:'', notes:'' },
+    { id:15, name:'Invitations', category:'Misc/Admin', budget:500, paid:0, date:'', paidBy:'', notes:'' },
+    { id:16, name:'Shuttle Service', category:'Transportation', budget:500, paid:0, date:'', paidBy:'', notes:'' },
+  ],
+  guests: [
+    { id:1,  name:'Denice Dell',            address:'3105 Acorn Glen Way', phone:'(916) 402-2307', rsvp:'Accepted', notes:'' },
+    { id:2,  name:'Derek Dell',             address:'3105 Acorn Glen Way', phone:'(916) 704-4107', rsvp:'Accepted', notes:'' },
+    { id:3,  name:'Susanne Dell',           address:'4211 Eagle View Way', phone:'(916) 474-0356', rsvp:'Pending',  notes:'' },
+    { id:4,  name:'Jan Dell',               address:'1839 Discovery Village Lane', phone:'(916) 201-7719', rsvp:'Pending', notes:'' },
+    { id:5,  name:'Tammie Fairchild',       address:'109 Donegan Court',   phone:'(916) 247-6028', rsvp:'Accepted', notes:'' },
+    { id:6,  name:'Greg Pope',              address:'109 Donegan Court',   phone:'',                rsvp:'Accepted', notes:'' },
+    { id:7,  name:'Madison Fairchild',      address:'840 Fieldstone Ct',   phone:'(916) 909-0444', rsvp:'Accepted', notes:'' },
+    { id:8,  name:'Christine Fairchild',    address:'840 Fieldstone Ct',   phone:'(916) 847-5362', rsvp:'Accepted', notes:'' },
+    { id:9,  name:'Krista Colteaux',        address:'840 Fieldstone Ct',   phone:'(925) 895-5458', rsvp:'Accepted', notes:'' },
+    { id:10, name:'Lennon Fairchild',       address:'840 Fieldstone Ct',   phone:'N/A',             rsvp:'Accepted', notes:'' },
+    { id:11, name:'Savage Fairchild',       address:'840 Fieldstone Ct',   phone:'N/A',             rsvp:'Accepted', notes:'' },
+    { id:12, name:'Brianne Watters Gomes',  address:'',                    phone:'(916) 223-4459', rsvp:'Pending',  notes:'' },
+    { id:13, name:'Travis Gomes',           address:'',                    phone:'',                rsvp:'Pending',  notes:'' },
+    { id:14, name:'Erin Evans',             address:'490 Mill Street #409',phone:'(209) 648-4514', rsvp:'Accepted', notes:'' },
+    { id:15, name:'Macy Falke',             address:'521 Messina Drive',   phone:'(209) 652-5097', rsvp:'Pending',  notes:'' },
+    { id:16, name:'Jordan Young',           address:'',                    phone:'(559) 679-8437', rsvp:'Pending',  notes:'' },
+    { id:17, name:'Devan Schnablegger',     address:'1651 Ryder Cup Drive',phone:'(916) 990-8028', rsvp:'Pending',  notes:'' },
+    { id:18, name:'Jonathan Schnablegger', address:'1651 Ryder Cup Drive', phone:'',                rsvp:'Pending',  notes:'' },
+    { id:19, name:'Decker Schnablegger',   address:'1651 Ryder Cup Drive', phone:'',                rsvp:'Pending',  notes:'' },
+    { id:20, name:'Jackson Schnablegger',  address:'1651 Ryder Cup Drive', phone:'',                rsvp:'Pending',  notes:'' },
+    { id:21, name:'Andrea Tagamolila',     address:'342 Turn Pike Drive',  phone:'(916) 790-4744', rsvp:'Pending',  notes:'' },
+    { id:22, name:'Gale Fairchild',         address:'',                    phone:'(916) 813-3144', rsvp:'Pending',  notes:'' },
+    { id:23, name:'Linda Neylan',           address:'',                    phone:'(760) 277-4140', rsvp:'Pending',  notes:'' },
+    { id:24, name:'Michael Neylan',         address:'',                    phone:'',                rsvp:'Pending',  notes:'' },
+    { id:25, name:'Courtney Adelman',       address:'',                    phone:'(760) 215-9265', rsvp:'Pending',  notes:'' },
+    { id:26, name:'Jake',                   address:'',                    phone:'',                rsvp:'Pending',  notes:'' },
+    { id:27, name:'Maddy Neylan',           address:'7791 E Osborn Rd #5E',phone:'(858) 692-3056', rsvp:'Pending',  notes:'' },
+    { id:28, name:'Ryder',                  address:'7791 E Osborn Rd #5E',phone:'',                rsvp:'Pending',  notes:'' },
+    { id:29, name:'Reedith Graham',         address:'8718 W Sausser Dr',   phone:'(760) 685-4940', rsvp:'Pending',  notes:'' },
+    { id:30, name:'Chloe Graham',           address:'8718 W Sausser Dr',   phone:'',                rsvp:'Pending',  notes:'' },
+    { id:31, name:'Bowen',                  address:'',                    phone:'',                rsvp:'Pending',  notes:'' },
+    { id:32, name:'Bearon',                 address:'',                    phone:'',                rsvp:'Pending',  notes:'' },
+    { id:33, name:'Louise McGuinnes',       address:'',                    phone:'',                rsvp:'Pending',  notes:'' },
+    { id:34, name:'Kathleen',               address:'',                    phone:'',                rsvp:'Pending',  notes:'' },
+    { id:35, name:'Pam Pucci',              address:'',                    phone:'(916) 549-7700', rsvp:'Pending',  notes:'' },
+    { id:36, name:'Dick',                   address:'',                    phone:'',                rsvp:'Pending',  notes:'' },
+  ],
+  vendors: [
+    { id:1, name:'The Posh Posey', contact:'Macy Falke', type:'Florals', address:'3710 Happy Lane', phone:'', website:'https://www.theposhposey.com/', notes:'' },
+    { id:2, name:'TBD',           contact:'',           type:'Photography', address:'', phone:'', website:'', notes:'Still searching' },
+    { id:3, name:'Edgewood Pastry', contact:'',         type:'Cake', address:'2264 Lake Tahoe Blvd #1', phone:'(530) 318-2444', website:'https://www.laketahoecakes.com/', notes:'' },
+    { id:4, name:'TBD',           contact:'',           type:'Hair', address:'', phone:'', website:'', notes:'Still searching' },
+    { id:5, name:'TBD',           contact:'',           type:'Makeup', address:'', phone:'', website:'', notes:'Still searching' },
+  ],
+  schedule: [
+    { id:1,  title:'Setup',               type:'Setup',        start:'8:00 AM', end:'3:30 PM',  location:'Edgewood Tahoe Resort', notes:'' },
+    { id:2,  title:'Massage',             type:'Preparation',  start:'10:00 AM',end:'11:30 AM', location:'Spa Edgewood', notes:'' },
+    { id:3,  title:'Hair',                type:'Preparation',  start:'11:30 AM',end:'1:00 PM',  location:'Getting Ready Suite', notes:'' },
+    { id:4,  title:'Makeup',              type:'Preparation',  start:'1:00 PM', end:'2:30 PM',  location:'Getting Ready Suite', notes:'' },
+    { id:5,  title:'Photography',         type:'Preparation',  start:'3:30 PM', end:'4:00 PM',  location:'Edgewood Tahoe Resort', notes:'Pre-ceremony portraits' },
+    { id:6,  title:'Guest Arrival',       type:'Ceremony',     start:'3:45 PM', end:'4:00 PM',  location:'North Room · Edgewood', notes:'' },
+    { id:7,  title:'Wedding Ceremony',    type:'Ceremony',     start:'4:00 PM', end:'4:30 PM',  location:'North Room · Edgewood', notes:'' },
+    { id:8,  title:'Cocktail Reception',  type:'Cocktails',    start:'4:30 PM', end:'6:00 PM',  location:'Edge Restaurant & Lounge', notes:'' },
+    { id:9,  title:'Guests Seated',       type:'Dinner',       start:'6:00 PM', end:'6:15 PM',  location:'Edge Restaurant & Lounge', notes:'' },
+    { id:10, title:'Dinner',              type:'Dinner',       start:'6:15 PM', end:'10:00 PM', location:'Edge Restaurant & Lounge', notes:'' },
+    { id:11, title:'Rehearsal Dinner',    type:'Rehearsal',    start:'5:00 PM', end:'7:00 PM',  location:'Base Camp Pizza Co.', notes:'Nov 8 · Evening before' },
+    { id:12, title:'Cocktails @ Hotel',   type:'Rehearsal',    start:'8:00 PM', end:'10:00 PM', location:'The Bistro Edgewood', notes:'Nov 8 · After rehearsal dinner' },
+  ],
+  tasks: [
+    { id:1,  label:'Book wedding photographer',        category:'Vendors',   due:'2026-06-01', done:false },
+    { id:2,  label:'Book hair & makeup artist',        category:'Vendors',   due:'2026-06-01', done:false },
+    { id:3,  label:'Send invitations',                 category:'Admin',     due:'2026-07-01', done:false },
+    { id:4,  label:'Confirm floral order with Posh Posey', category:'Vendors', due:'2026-08-01', done:false },
+    { id:5,  label:'Finalize menu with The Edge',      category:'Venue',     due:'2026-09-01', done:false },
+    { id:6,  label:'Arrange shuttle service',          category:'Transport', due:'2026-09-15', done:false },
+    { id:7,  label:'Create seating chart',             category:'Planning',  due:'2026-10-01', done:false },
+    { id:8,  label:'Purchase wedding insurance',       category:'Admin',     due:'2026-06-15', done:false },
+    { id:9,  label:'Final dress fitting',              category:'Attire',    due:'2026-10-15', done:false },
+    { id:10, label:"Jordan's final suit fitting",      category:'Attire',    due:'2026-10-15', done:false },
+    { id:11, label:'Confirm all vendor details',       category:'Vendors',   due:'2026-10-20', done:false },
+    { id:12, label:'Confirm hotel room blocks',        category:'Lodging',   due:'2026-07-01', done:true },
+    { id:13, label:'Book Edgewood Pastry for cake',    category:'Vendors',   due:'2026-06-01', done:false },
+    { id:14, label:'Write vows',                       category:'Ceremony',  due:'2026-10-01', done:false },
+    { id:15, label:'Plan rehearsal dinner menu',       category:'Rehearsal', due:'2026-09-01', done:false },
+  ],
+  tables: [
+    { id:1, name:'Sweetheart Table', capacity:2, guests:['Cassie Dell','Jordan Adelman'] },
+    { id:2, name:'Family — Table 1',  capacity:8, guests:['Denice Dell','Derek Dell','Susanne Dell','Jan Dell','Tammie Fairchild','Greg Pope'] },
+    { id:3, name:'Family — Table 2',  capacity:8, guests:['Madison Fairchild','Christine Fairchild','Krista Colteaux','Lennon Fairchild','Savage Fairchild'] },
+    { id:4, name:'Friends — Table 3', capacity:8, guests:['Erin Evans','Macy Falke','Jordan Young','Devan Schnablegger'] },
+  ],
+  menu: [
+    { id:1, course:'Cocktail Hour', name:'Cheese & Charcuterie Board', desc:'Selection of artisan cheeses, cured meats, seasonal fruits', note:'Vegetarian available', category:'Appetizer' },
+    { id:2, course:'Cocktail Hour', name:'Bruschetta Trio', desc:'Tomato basil, mushroom truffle, roasted pepper', note:'Vegan', category:'Appetizer' },
+    { id:3, course:'Cocktail Hour', name:'Shrimp Cocktail', desc:'Chilled gulf shrimp, housemade cocktail sauce, lemon', note:'', category:'Appetizer' },
+    { id:4, course:'Dinner — First Course', name:'Roasted Beet Salad', desc:'Arugula, candied walnuts, goat cheese, champagne vinaigrette', note:'Vegetarian · GF', category:'Salad' },
+    { id:5, course:'Dinner — First Course', name:'Butternut Squash Bisque', desc:'Crème fraîche, toasted pepitas, chive oil', note:'Vegetarian · GF', category:'Soup' },
+    { id:6, course:'Dinner — Entrée', name:'Filet Mignon', desc:'8oz center-cut, truffle butter, roasted garlic fingerlings, broccolini', note:'GF · Chef\'s recommendation', category:'Main' },
+    { id:7, course:'Dinner — Entrée', name:'Pan-Seared Salmon', desc:'Lemon caper beurre blanc, wild rice pilaf, asparagus', note:'GF', category:'Main' },
+    { id:8, course:'Dinner — Entrée', name:'Wild Mushroom Risotto', desc:'Arborio, parmesan, truffle oil, fresh herbs', note:'Vegetarian · GF', category:'Main' },
+    { id:9, course:'Dinner — Dessert', name:'Wedding Cake', desc:'Custom cake from Edgewood Pastry · TBD flavor', note:'', category:'Dessert' },
+    { id:10, course:'Dinner — Dessert', name:'Seasonal Sorbet', desc:'Mango, raspberry, or lemon', note:'Vegan · GF', category:'Dessert' },
+  ]
+};
+
+// Guest filter state
+let guestFilter = 'all';
+
+// ══════════════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════════════
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  const btns = document.querySelectorAll('nav button');
+  btns.forEach(b => { if (b.getAttribute('onclick').includes("'" + id + "'")) b.classList.add('active'); });
+  renderSection(id);
+}
+
+function renderSection(id) {
+  if (id === 'overview') renderOverview();
+  if (id === 'budget') renderBudget();
+  if (id === 'guests') renderGuests();
+  if (id === 'vendors') renderVendors();
+  if (id === 'schedule') renderSchedule();
+  if (id === 'checklist') renderChecklist();
+  if (id === 'seating') renderSeating();
+  if (id === 'menu') renderMenu();
+}
+
+// ══════════════════════════════════════════
+// COUNTDOWN
+// ══════════════════════════════════════════
+function updateCountdown() {
+  const wedding = new Date('2026-11-09T16:00:00');
+  const now = new Date();
+  const diff = wedding - now;
+  if (diff <= 0) { document.getElementById('countdown').innerHTML = '🎉 Today!'; return; }
+  const days = Math.floor(diff / 86400000);
+  document.getElementById('countdown').innerHTML = '<strong>' + days + '</strong> days to go';
+}
+updateCountdown();
+setInterval(updateCountdown, 60000);
+
+// ══════════════════════════════════════════
+// OVERVIEW
+// ══════════════════════════════════════════
+function renderOverview() {
+  const totalBudget = data.budget.reduce((s,i) => s + (i.budget||0), 0);
+  const totalPaid   = data.budget.reduce((s,i) => s + (i.paid||0), 0);
+  const remaining   = totalBudget - totalPaid;
+  const accepted    = data.guests.filter(g => g.rsvp === 'Accepted').length;
+  const pending     = data.guests.filter(g => g.rsvp === 'Pending').length;
+  const doneTasks   = data.tasks.filter(t => t.done).length;
+
+  document.getElementById('dash-cards').innerHTML = `
+    <div class="dash-card" onclick="showSection('budget')">
+      <div class="dash-card-icon">💰</div>
+      <div class="dash-card-label">Total Budget</div>
+      <div class="dash-card-value">$${totalBudget.toLocaleString()}</div>
+      <div class="dash-card-sub">$${remaining.toLocaleString()} remaining</div>
+    </div>
+    <div class="dash-card" onclick="showSection('guests')">
+      <div class="dash-card-icon">💌</div>
+      <div class="dash-card-label">Guest List</div>
+      <div class="dash-card-value">${data.guests.length}</div>
+      <div class="dash-card-sub">${accepted} accepted · ${pending} pending</div>
+    </div>
+    <div class="dash-card" onclick="showSection('vendors')">
+      <div class="dash-card-icon">🌿</div>
+      <div class="dash-card-label">Vendors</div>
+      <div class="dash-card-value">${data.vendors.filter(v=>v.name!=='TBD').length} booked</div>
+      <div class="dash-card-sub">${data.vendors.filter(v=>v.name==='TBD').length} still needed</div>
+    </div>
+    <div class="dash-card" onclick="showSection('checklist')">
+      <div class="dash-card-icon">✅</div>
+      <div class="dash-card-label">Tasks</div>
+      <div class="dash-card-value">${doneTasks}/${data.tasks.length}</div>
+      <div class="dash-card-sub">${data.tasks.length - doneTasks} remaining</div>
+    </div>
+  `;
+
+  const evs = data.schedule.filter(e=>e.type!=='Rehearsal').slice(0,5);
+  document.getElementById('upcoming-events').innerHTML = evs.map(e => `
+    <div style="padding:0.6rem 0;border-bottom:1px solid var(--ivory-dark);font-size:0.85rem;">
+      <div style="font-weight:500;">${e.title}</div>
+      <div style="color:var(--text-light);font-size:0.78rem;">${e.start} · ${e.location}</div>
+    </div>
+  `).join('');
+
+  const upcoming = data.tasks.filter(t=>!t.done).sort((a,b)=>a.due.localeCompare(b.due)).slice(0,5);
+  document.getElementById('upcoming-tasks').innerHTML = upcoming.map(t => `
+    <div style="padding:0.6rem 0;border-bottom:1px solid var(--ivory-dark);font-size:0.85rem;display:flex;gap:0.5rem;align-items:center;">
+      <div onclick="toggleTask(${t.id})" style="width:16px;height:16px;border:1.5px solid var(--ivory-border);border-radius:3px;flex-shrink:0;cursor:pointer;"></div>
+      <div style="flex:1;">${t.label}</div>
+      <div style="color:var(--text-light);font-size:0.75rem;">${t.due}</div>
+    </div>
+  `).join('');
+}
+
+// ══════════════════════════════════════════
+// BUDGET
+// ══════════════════════════════════════════
+function renderBudget() {
+  const total  = data.budget.reduce((s,i) => s + (i.budget||0), 0);
+  const paid   = data.budget.reduce((s,i) => s + (i.paid||0), 0);
+  const remain = total - paid;
+  const pct    = total > 0 ? Math.round(paid / total * 100) : 0;
+
+  document.getElementById('budget-summary').innerHTML = `
+    <div class="budget-stat">
+      <label>Total Budget</label>
+      <div class="amount">$${total.toLocaleString()}</div>
+    </div>
+    <div class="budget-stat">
+      <label>Amount Paid</label>
+      <div class="amount sage">$${paid.toLocaleString()}</div>
+      <div class="progress-bar-wrap"><div class="progress-bar" style="width:${pct}%"></div></div>
+    </div>
+    <div class="budget-stat">
+      <label>Remaining</label>
+      <div class="amount gold">$${remain.toLocaleString()}</div>
+    </div>
+    <div class="budget-stat">
+      <label>Line Items</label>
+      <div class="amount">${data.budget.length}</div>
+    </div>
+  `;
+
+  const cats = [...new Set(data.budget.map(i=>i.category))];
+  document.getElementById('budget-tbody').innerHTML = data.budget.map(item => `
+    <tr>
+      <td>${item.name}</td>
+      <td><span class="badge badge-sage">${item.category}</span></td>
+      <td>$${(item.budget||0).toLocaleString()}</td>
+      <td>$${(item.paid||0).toLocaleString()}</td>
+      <td style="font-size:0.8rem;color:var(--text-mid);">${item.notes || item.date || '—'}</td>
+      <td style="font-size:0.8rem;color:var(--text-mid);">${item.paidBy || '—'}</td>
+      <td><button class="btn-sm danger" onclick="deleteBudget(${item.id})">✕</button></td>
+    </tr>
+  `).join('');
+}
+
+function deleteBudget(id) {
+  data.budget = data.budget.filter(i=>i.id!==id);
+  renderBudget();
+}
+
+// ══════════════════════════════════════════
+// GUESTS
+// ══════════════════════════════════════════
+function renderGuests() {
+  const accepted = data.guests.filter(g=>g.rsvp==='Accepted').length;
+  const pending  = data.guests.filter(g=>g.rsvp==='Pending').length;
+  const declined = data.guests.filter(g=>g.rsvp==='Declined').length;
+
+  document.getElementById('rsvp-summary').innerHTML = `
+    <div class="rsvp-pill total"><strong>${data.guests.length}</strong> Total</div>
+    <div class="rsvp-pill accepted"><strong>${accepted}</strong> Accepted</div>
+    <div class="rsvp-pill pending"><strong>${pending}</strong> Pending</div>
+    <div class="rsvp-pill declined"><strong>${declined}</strong> Declined</div>
+  `;
+
+  const query = (document.getElementById('guest-search')?.value||'').toLowerCase();
+  let list = data.guests;
+  if (guestFilter !== 'all') list = list.filter(g=>g.rsvp===guestFilter);
+  if (query) list = list.filter(g=>g.name.toLowerCase().includes(query)||(g.address||'').toLowerCase().includes(query));
+
+  document.getElementById('guest-tbody').innerHTML = list.map(g => `
+    <tr>
+      <td style="font-weight:500;">${g.name}</td>
+      <td style="font-size:0.82rem;color:var(--text-mid);">${g.address||'—'}</td>
+      <td style="font-size:0.82rem;">${g.phone||'—'}</td>
+      <td>
+        <select onchange="updateGuestRSVP(${g.id},this.value)" style="border:none;background:none;font-family:'Jost',sans-serif;font-size:0.78rem;color:var(--text-mid);cursor:pointer;padding:0;">
+          <option ${g.rsvp==='Accepted'?'selected':''}>Accepted</option>
+          <option ${g.rsvp==='Pending'?'selected':''}>Pending</option>
+          <option ${g.rsvp==='Declined'?'selected':''}>Declined</option>
+        </select>
+        <span class="badge ${g.rsvp==='Accepted'?'badge-green':g.rsvp==='Declined'?'badge-red':'badge-amber'}">${g.rsvp}</span>
+      </td>
+      <td style="font-size:0.8rem;color:var(--text-mid);">${g.notes||'—'}</td>
+      <td><button class="btn-sm danger" onclick="deleteGuest(${g.id})">✕</button></td>
+    </tr>
+  `).join('');
+}
+
+function updateGuestRSVP(id, val) {
+  const g = data.guests.find(g=>g.id===id);
+  if (g) { g.rsvp = val; renderGuests(); }
+}
+
+function filterGuests(filter, btn) {
+  guestFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGuests();
+}
+
+function deleteGuest(id) {
+  data.guests = data.guests.filter(g=>g.id!==id);
+  renderGuests();
+}
+
+// ══════════════════════════════════════════
+// VENDORS
+// ══════════════════════════════════════════
+function renderVendors() {
+  document.getElementById('vendor-grid').innerHTML = data.vendors.map(v => `
+    <div class="vendor-card ${v.name==='TBD'?'vendor-tbd':''}">
+      <div class="vendor-card-type">${v.type}</div>
+      <div class="vendor-card-name">${v.name==='TBD'?'Vendor TBD':v.name}</div>
+      ${v.contact?`<div class="vendor-card-contact">Contact: ${v.contact}</div>`:''}
+      <div class="vendor-card-meta">
+        ${v.phone?`<span>📞 ${v.phone}</span>`:''}
+        ${v.address?`<span>📍 ${v.address}</span>`:''}
+        ${v.website?`<span>🔗 <a href="${v.website}" target="_blank" style="color:var(--sage);">${v.website.replace('https://','').replace('www.','').split('/')[0]}</a></span>`:''}
+        ${v.notes?`<span style="color:var(--text-light);font-style:italic;">${v.notes}</span>`:''}
+      </div>
+      <div style="margin-top:0.75rem;display:flex;gap:0.5rem;">
+        <span class="badge ${v.name==='TBD'?'badge-amber':'badge-green'}">${v.name==='TBD'?'Searching':'Booked'}</span>
+        <button class="btn-sm danger" onclick="deleteVendor(${v.id})" style="margin-left:auto;">✕</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function deleteVendor(id) {
+  data.vendors = data.vendors.filter(v=>v.id!==id);
+  renderVendors();
+}
+
+// ══════════════════════════════════════════
+// SCHEDULE
+// ══════════════════════════════════════════
+const typeColor = {
+  'Setup':'badge-gray','Preparation':'badge-sage','Ceremony':'badge-green',
+  'Cocktails':'badge-amber','Dinner':'badge-sage','Rehearsal':'badge-gray'
+};
+
+function renderSchedule() {
+  const wed = data.schedule.filter(e=>e.type!=='Rehearsal');
+  const rehear = data.schedule.filter(e=>e.type==='Rehearsal');
+
+  document.getElementById('timeline').innerHTML = `
+    <p style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:1.5rem;">November 8 — Rehearsal</p>
+    ${rehear.map(e=>timelineItem(e)).join('')}
+    <p style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:1.5rem;margin-top:2rem;">November 9 — Wedding Day</p>
+    ${wed.map(e=>timelineItem(e)).join('')}
+  `;
+}
+
+function timelineItem(e) {
+  const key = e.type==='Ceremony'||e.type==='Dinner';
+  return `
+    <div class="timeline-item ${key?'key':''}">
+      <div class="timeline-card">
+        <span class="badge ${typeColor[e.type]||'badge-gray'} timeline-type-badge">${e.type}</span>
+        <div class="timeline-time">${e.start}${e.end?' — '+e.end:''}</div>
+        <div class="timeline-title">${e.title}</div>
+        <div class="timeline-location">${e.location}</div>
+        ${e.notes?`<div style="font-size:0.78rem;color:var(--text-light);margin-top:0.2rem;font-style:italic;">${e.notes}</div>`:''}
+      </div>
+    </div>
+  `;
+}
+
+// ══════════════════════════════════════════
+// CHECKLIST
+// ══════════════════════════════════════════
+function renderChecklist() {
+  const cats = [...new Set(data.tasks.map(t=>t.category))];
+  const done  = data.tasks.filter(t=>t.done).length;
+  const total = data.tasks.length;
+  const pct   = total > 0 ? Math.round(done/total*100) : 0;
+
+  document.getElementById('checklist-wrap').innerHTML = `
+    <div style="margin-bottom:1.5rem;">
+      <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-mid);margin-bottom:0.4rem;">
+        <span>${done} of ${total} tasks complete</span><span>${pct}%</span>
+      </div>
+      <div class="progress-bar-wrap"><div class="progress-bar" style="width:${pct}%"></div></div>
+    </div>
+    ${cats.map(cat => `
+      <div class="checklist-group">
+        <h3>${cat}</h3>
+        ${data.tasks.filter(t=>t.category===cat).map(t=>`
+          <div class="check-item ${t.done?'done':''}" onclick="toggleTask(${t.id})">
+            <div class="check-box"></div>
+            <span class="check-label">${t.label}</span>
+            ${t.due?`<span class="check-date">${t.due}</span>`:''}
+          </div>
+        `).join('')}
+      </div>
+    `).join('')}
+  `;
+}
+
+function toggleTask(id) {
+  const t = data.tasks.find(t=>t.id===id);
+  if (t) { t.done = !t.done; renderChecklist(); renderOverview(); }
+}
+
+// ══════════════════════════════════════════
+// SEATING
+// ══════════════════════════════════════════
+function renderSeating() {
+  document.getElementById('seating-layout').innerHTML = data.tables.map(t => `
+    <div class="seating-table">
+      <div class="seating-table-header">
+        <span class="seating-table-name">${t.name}</span>
+        <span class="seating-table-count">${t.guests.length}/${t.capacity} seats</span>
+      </div>
+      ${t.guests.map(g=>`
+        <div class="seat-guest">
+          <div class="seat-dot"></div>
+          <span>${g}</span>
+        </div>
+      `).join('')}
+      ${Array(Math.max(0, t.capacity - t.guests.length)).fill('').map(()=>`
+        <div class="seat-guest" style="opacity:0.3;font-style:italic;font-size:0.78rem;">
+          <div class="seat-dot" style="background:var(--ivory-border);"></div>
+          Open seat
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+}
+
+// ══════════════════════════════════════════
+// MENU
+// ══════════════════════════════════════════
+function renderMenu() {
+  const courses = [...new Set(data.menu.map(m=>m.course))];
+  document.getElementById('menu-wrap').innerHTML = courses.map(course => `
+    <div class="menu-section">
+      <h3>${course}</h3>
+      ${data.menu.filter(m=>m.course===course).map(item=>`
+        <div class="menu-item">
+          <div class="menu-item-name">${item.name}</div>
+          ${item.desc?`<div class="menu-item-desc">${item.desc}</div>`:''}
+          ${item.note?`<div class="menu-item-note">${item.note}</div>`:''}
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+}
+
+// ══════════════════════════════════════════
+// MODALS
+// ══════════════════════════════════════════
+let currentModal = '';
+
+function openModal(type) {
+  currentModal = type;
+  const m = document.getElementById('modal-content');
+  const forms = {
+    budget: `
+      <h3>Add Budget Item</h3>
+      <div class="form-group"><label>Item Name</label><input id="f-name" placeholder="e.g. DJ Services"></div>
+      <div class="form-group"><label>Category</label>
+        <select id="f-cat"><option>Venue</option><option>Food</option><option>Vendors</option><option>Attire</option><option>Lodging</option><option>Transportation</option><option>Misc/Admin</option></select>
+      </div>
+      <div class="form-group"><label>Budgeted Amount ($)</label><input id="f-budget" type="number" placeholder="0"></div>
+      <div class="form-group"><label>Amount Paid ($)</label><input id="f-paid" type="number" placeholder="0"></div>
+      <div class="form-group"><label>Notes</label><input id="f-notes" placeholder="Optional notes"></div>
+      <div class="form-group"><label>Paid By</label><input id="f-paidby" placeholder="Who paid?"></div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-save" onclick="saveBudget()">Save</button>
+      </div>
+    `,
+    guest: `
+      <h3>Add Guest</h3>
+      <div class="form-group"><label>Full Name</label><input id="f-name" placeholder="First Last"></div>
+      <div class="form-group"><label>Address</label><input id="f-addr" placeholder="Street address"></div>
+      <div class="form-group"><label>Phone</label><input id="f-phone" placeholder="(000) 000-0000"></div>
+      <div class="form-group"><label>RSVP Status</label>
+        <select id="f-rsvp"><option>Pending</option><option>Accepted</option><option>Declined</option></select>
+      </div>
+      <div class="form-group"><label>Notes</label><input id="f-notes" placeholder="Dietary restrictions, etc."></div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-save" onclick="saveGuest()">Save</button>
+      </div>
+    `,
+    vendor: `
+      <h3>Add Vendor</h3>
+      <div class="form-group"><label>Vendor Name</label><input id="f-name" placeholder="Business name"></div>
+      <div class="form-group"><label>Type</label>
+        <select id="f-type"><option>Florals</option><option>Photography</option><option>Videography</option><option>Hair</option><option>Makeup</option><option>Cake</option><option>DJ/Band</option><option>Catering</option><option>Other</option></select>
+      </div>
+      <div class="form-group"><label>Contact Person</label><input id="f-contact" placeholder="Name"></div>
+      <div class="form-group"><label>Phone</label><input id="f-phone" placeholder="(000) 000-0000"></div>
+      <div class="form-group"><label>Website</label><input id="f-website" placeholder="https://..."></div>
+      <div class="form-group"><label>Notes</label><input id="f-notes" placeholder="Contract details, etc."></div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-save" onclick="saveVendor()">Save</button>
+      </div>
+    `,
+    schedule: `
+      <h3>Add Event</h3>
+      <div class="form-group"><label>Event Title</label><input id="f-title" placeholder="e.g. First Dance"></div>
+      <div class="form-group"><label>Type</label>
+        <select id="f-type"><option>Ceremony</option><option>Cocktails</option><option>Dinner</option><option>Preparation</option><option>Setup</option><option>Rehearsal</option></select>
+      </div>
+      <div class="form-group"><label>Start Time</label><input id="f-start" placeholder="e.g. 4:00 PM"></div>
+      <div class="form-group"><label>End Time</label><input id="f-end" placeholder="e.g. 4:30 PM"></div>
+      <div class="form-group"><label>Location</label><input id="f-loc" placeholder="Venue / Room name"></div>
+      <div class="form-group"><label>Notes</label><input id="f-notes" placeholder="Optional details"></div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-save" onclick="saveSchedule()">Save</button>
+      </div>
+    `,
+    task: `
+      <h3>Add Task</h3>
+      <div class="form-group"><label>Task</label><input id="f-label" placeholder="What needs to be done?"></div>
+      <div class="form-group"><label>Category</label>
+        <select id="f-cat"><option>Vendors</option><option>Admin</option><option>Venue</option><option>Attire</option><option>Ceremony</option><option>Planning</option><option>Lodging</option><option>Transport</option></select>
+      </div>
+      <div class="form-group"><label>Due Date</label><input id="f-due" type="date"></div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-save" onclick="saveTask()">Save</button>
+      </div>
+    `,
+    table: `
+      <h3>Add Seating Table</h3>
+      <div class="form-group"><label>Table Name</label><input id="f-name" placeholder="e.g. Table 5 — Friends"></div>
+      <div class="form-group"><label>Capacity</label><input id="f-cap" type="number" placeholder="8"></div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-save" onclick="saveTable()">Save</button>
+      </div>
+    `,
+    menuitem: `
+      <h3>Add Menu Item</h3>
+      <div class="form-group"><label>Item Name</label><input id="f-name" placeholder="Dish name"></div>
+      <div class="form-group"><label>Course</label>
+        <select id="f-course"><option>Cocktail Hour</option><option>Dinner — First Course</option><option>Dinner — Entrée</option><option>Dinner — Dessert</option></select>
+      </div>
+      <div class="form-group"><label>Description</label><textarea id="f-desc" rows="2" placeholder="Ingredients, preparation..."></textarea></div>
+      <div class="form-group"><label>Dietary Notes</label><input id="f-note" placeholder="e.g. GF, Vegan, Vegetarian"></div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-save" onclick="saveMenuItem()">Save</button>
+      </div>
+    `,
+  };
+  m.innerHTML = forms[type] || '';
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
+function closeModalOnBg(e) { if (e.target === document.getElementById('modal-overlay')) closeModal(); }
+
+function nextId(arr) { return arr.length ? Math.max(...arr.map(i=>i.id)) + 1 : 1; }
+
+function saveBudget() {
+  data.budget.push({ id:nextId(data.budget), name:v('f-name'), category:v('f-cat'), budget:+v('f-budget')||0, paid:+v('f-paid')||0, notes:v('f-notes'), paidBy:v('f-paidby'), date:'' });
+  closeModal(); renderBudget();
+}
+
+function saveGuest() {
+  data.guests.push({ id:nextId(data.guests), name:v('f-name'), address:v('f-addr'), phone:v('f-phone'), rsvp:v('f-rsvp'), notes:v('f-notes') });
+  closeModal(); renderGuests();
+}
+
+function saveVendor() {
+  data.vendors.push({ id:nextId(data.vendors), name:v('f-name'), type:v('f-type'), contact:v('f-contact'), phone:v('f-phone'), website:v('f-website'), notes:v('f-notes'), address:'' });
+  closeModal(); renderVendors();
+}
+
+function saveSchedule() {
+  data.schedule.push({ id:nextId(data.schedule), title:v('f-title'), type:v('f-type'), start:v('f-start'), end:v('f-end'), location:v('f-loc'), notes:v('f-notes') });
+  closeModal(); renderSchedule();
+}
+
+function saveTask() {
+  data.tasks.push({ id:nextId(data.tasks), label:v('f-label'), category:v('f-cat'), due:v('f-due'), done:false });
+  closeModal(); renderChecklist();
+}
+
+function saveTable() {
+  data.tables.push({ id:nextId(data.tables), name:v('f-name'), capacity:+v('f-cap')||8, guests:[] });
+  closeModal(); renderSeating();
+}
+
+function saveMenuItem() {
+  data.menu.push({ id:nextId(data.menu), name:v('f-name'), course:v('f-course'), desc:v('f-desc'), note:v('f-note'), category:'Item' });
+  closeModal(); renderMenu();
+}
+
+function v(id) { const el = document.getElementById(id); return el ? el.value : ''; }
+
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
+renderOverview();
+</script>
+</body>
+</html>
