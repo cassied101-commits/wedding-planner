@@ -41,11 +41,12 @@ nav a:hover{color:var(--gold)}
   padding:7rem 2rem 5rem;
 }
 .hero-scene{
-  position:absolute;bottom:0;left:0;right:0;
+  position:absolute;inset:0;
   pointer-events:none;
 }
 .hero-svg{
-  display:block;width:100%;height:auto;
+  position:absolute;bottom:0;left:0;
+  width:100%;height:100%;
 }
 .hero-text{
   position:relative;z-index:2;text-align:center;
@@ -78,21 +79,21 @@ nav a:hover{color:var(--gold)}
   width:1px;height:30px;background:var(--gold);opacity:0.35;margin:1.5rem auto;
 }
 .hero-date{
-  font-size:clamp(0.65rem,2vw,0.78rem);letter-spacing:0.24em;
-  text-transform:uppercase;color:var(--ink);font-weight:700;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.1rem,3vw,1.5rem);
+  letter-spacing:0.08em;color:var(--ink);font-weight:400;
+  border-top:1px solid rgba(160,120,64,0.35);
+  border-bottom:1px solid rgba(160,120,64,0.35);
+  padding:0.5rem 2rem;display:inline-block;
 }
 .hero-location{
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1rem,3vw,1.35rem);
-  font-style:italic;color:var(--ink-light);margin-top:0.4rem;
+  font-size:clamp(0.95rem,2.5vw,1.2rem);
+  font-style:italic;color:var(--ink-light);margin-top:1rem;
 }
 .gd{color:var(--gold);margin:0 0.5rem}
-.countdown{display:flex;gap:2.5rem;margin-top:2.8rem;justify-content:center}
-.cd-unit{text-align:center}
-.cd-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;line-height:1;color:var(--ink);display:block}
-.cd-label{font-size:0.52rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold)}
 .scroll-hint{
-  position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);
+  position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);
   font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;
   color:var(--ink-light);opacity:0.4;
 }
@@ -156,19 +157,13 @@ section{max-width:820px;margin:0 auto;padding:5.5rem 2rem}
 .reg-btn.primary{background:var(--ink);color:var(--white);border-color:var(--ink)}
 .reg-btn.primary:hover{background:var(--gold);border-color:var(--gold)}
 
-/* GALLERY — dark background makes B&W photos intentional and elegant */
-.section-alt.gal-section{background:#1A1815;padding:5.5rem 0}
-.section-alt.gal-section .eyebrow{color:#A07840}
-.section-alt.gal-section .sec-title{color:#FAF6F1}
-.section-alt.gal-section .sec-rule{color:#A07840}
-.section-alt.gal-section .sec-rule::before,
-.section-alt.gal-section .sec-rule::after{background:#A07840}
-.gal-intro{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:rgba(250,246,241,0.55);margin-bottom:2.5rem}
-.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-.gal-item{aspect-ratio:1;overflow:hidden;position:relative;background:#2A2520}
-.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease,opacity 0.3s;display:block;opacity:0.88}
-.gal-item:hover img{transform:scale(1.05);opacity:1}
-.gal-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(10,8,6,0.82));color:rgba(250,246,241,0.9);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.85rem;padding:2.5rem 0.9rem 0.8rem;opacity:0;transition:opacity 0.3s ease}
+/* GALLERY */
+.gal-intro{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:var(--ink-light);margin-bottom:2.5rem}
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.gal-item{aspect-ratio:1;overflow:hidden;position:relative;background:var(--linen-deep)}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;display:block;filter:sepia(0.15) contrast(0.95)}
+.gal-item:hover img{transform:scale(1.05);filter:sepia(0) contrast(1)}
+.gal-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(26,24,21,0.72));color:#FAF6F1;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.85rem;padding:2.5rem 0.9rem 0.8rem;opacity:0;transition:opacity 0.3s ease}
 .gal-item:hover .gal-cap{opacity:1}
 
 /* FAQS */
@@ -212,85 +207,69 @@ footer{text-align:center;padding:4rem 2rem 2.5rem;border-top:1px solid rgba(160,
 
 <!-- HERO — actual envelope watercolor as background -->
 <section class="hero" id="home">
-  <!-- SVG landscape illustration -->
+  <!-- SVG landscape — sits behind text as absolute layer -->
   <div class="hero-scene" aria-hidden="true">
-    <svg class="hero-svg" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+    <svg class="hero-svg" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#E8C8A0" stop-opacity="0.38"/>
-          <stop offset="55%" stop-color="#F0EAE2" stop-opacity="0.18"/>
-          <stop offset="100%" stop-color="#F0EAE2" stop-opacity="0"/>
-        </linearGradient>
-        <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#C8B4A0" stop-opacity="0.22"/>
+          <stop offset="0%" stop-color="#E8C8A0" stop-opacity="0.32"/>
+          <stop offset="60%" stop-color="#F0EAE2" stop-opacity="0.10"/>
           <stop offset="100%" stop-color="#F0EAE2" stop-opacity="0"/>
         </linearGradient>
         <linearGradient id="mtGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#B0A090" stop-opacity="0.55"/>
-          <stop offset="100%" stop-color="#B0A090" stop-opacity="0.35"/>
+          <stop offset="0%" stop-color="#B0A090" stop-opacity="0.48"/>
+          <stop offset="100%" stop-color="#B0A090" stop-opacity="0.28"/>
+        </linearGradient>
+        <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#C8B4A0" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#F0EAE2" stop-opacity="0"/>
         </linearGradient>
       </defs>
-      <!-- Sky wash -->
-      <rect width="1440" height="520" fill="url(#skyGrad)"/>
-      <!-- Distant mountains L -->
-      <polygon points="0,310 90,210 180,260 270,190 370,240 430,210 510,280 560,310 0,310" fill="url(#mtGrad)" opacity="0.7"/>
-      <!-- Distant mountains R -->
-      <polygon points="900,310 990,230 1080,270 1170,200 1270,255 1360,220 1440,260 1440,310" fill="url(#mtGrad)" opacity="0.6"/>
-      <!-- Closer ridge -->
-      <polygon points="350,310 480,250 580,280 680,240 780,265 880,250 980,310" fill="#A89880" opacity="0.45"/>
-      <!-- Horizon / water line -->
-      <line x1="0" y1="310" x2="1440" y2="310" stroke="#A89880" stroke-width="0.5" opacity="0.4"/>
-      <!-- Water reflection -->
-      <rect x="0" y="310" width="1440" height="80" fill="url(#waterGrad)"/>
-      <!-- Reflection ripples -->
-      <line x1="480" y1="330" x2="960" y2="330" stroke="#A89880" stroke-width="0.5" opacity="0.18"/>
-      <line x1="520" y1="345" x2="920" y2="345" stroke="#A89880" stroke-width="0.5" opacity="0.12"/>
-      <line x1="560" y1="360" x2="880" y2="360" stroke="#A89880" stroke-width="0.5" opacity="0.08"/>
-      <!-- Pine trees RIGHT -->
-      <g fill="#2E2820" opacity="0.72">
-        <polygon points="1200,310 1188,278 1212,278"/>
-        <polygon points="1200,285 1183,250 1217,250"/>
-        <polygon points="1200,258 1186,225 1214,225"/>
-        <rect x="1197" y="310" width="6" height="14"/>
-
-        <polygon points="1250,310 1236,272 1264,272"/>
-        <polygon points="1250,278 1232,240 1268,240"/>
-        <polygon points="1250,248 1235,212 1265,212"/>
-        <rect x="1247" y="310" width="6" height="14"/>
-
-        <polygon points="1300,310 1285,265 1315,265"/>
-        <polygon points="1300,270 1282,230 1318,230"/>
-        <polygon points="1300,236 1285,200 1315,200"/>
-        <polygon points="1300,208 1287,178 1313,178"/>
-        <rect x="1297" y="310" width="6" height="16"/>
-
-        <polygon points="1355,310 1341,275 1369,275"/>
-        <polygon points="1355,282 1339,245 1371,245"/>
-        <polygon points="1355,252 1340,218 1370,218"/>
-        <rect x="1352" y="310" width="6" height="14"/>
-
-        <polygon points="1400,310 1388,282 1412,282"/>
-        <polygon points="1400,288 1385,258 1415,258"/>
-        <polygon points="1400,262 1386,235 1414,235"/>
-        <rect x="1397" y="310" width="6" height="14"/>
+      <rect width="1440" height="600" fill="url(#skyGrad)"/>
+      <polygon points="0,380 90,270 180,320 270,240 370,295 430,260 510,340 560,380 0,380" fill="url(#mtGrad)" opacity="0.7"/>
+      <polygon points="880,380 990,280 1080,320 1170,250 1270,305 1360,268 1440,310 1440,380" fill="url(#mtGrad)" opacity="0.6"/>
+      <polygon points="340,380 480,305 580,335 680,295 780,318 900,305 980,380" fill="#A89880" opacity="0.38"/>
+      <line x1="0" y1="380" x2="1440" y2="380" stroke="#A89880" stroke-width="0.6" opacity="0.35"/>
+      <rect x="0" y="380" width="1440" height="100" fill="url(#waterGrad)"/>
+      <line x1="460" y1="400" x2="980" y2="400" stroke="#A89880" stroke-width="0.5" opacity="0.14"/>
+      <line x1="500" y1="418" x2="940" y2="418" stroke="#A89880" stroke-width="0.5" opacity="0.09"/>
+      <g fill="#2E2820" opacity="0.65">
+        <polygon points="1210,380 1197,344 1223,344"/>
+        <polygon points="1210,350 1193,312 1227,312"/>
+        <polygon points="1210,320 1195,282 1225,282"/>
+        <rect x="1207" y="380" width="6" height="14"/>
+        <polygon points="1262,380 1247,338 1277,338"/>
+        <polygon points="1262,344 1244,300 1280,300"/>
+        <polygon points="1262,308 1246,268 1278,268"/>
+        <polygon points="1262,276 1248,242 1276,242"/>
+        <rect x="1259" y="380" width="6" height="16"/>
+        <polygon points="1318,380 1302,330 1334,330"/>
+        <polygon points="1318,336 1300,288 1336,288"/>
+        <polygon points="1318,296 1302,252 1334,252"/>
+        <polygon points="1318,260 1304,222 1332,222"/>
+        <rect x="1315" y="380" width="6" height="16"/>
+        <polygon points="1370,380 1356,345 1384,345"/>
+        <polygon points="1370,352 1353,315 1387,315"/>
+        <polygon points="1370,322 1355,288 1385,288"/>
+        <rect x="1367" y="380" width="6" height="14"/>
+        <polygon points="1416,380 1404,352 1428,352"/>
+        <polygon points="1416,358 1401,328 1431,328"/>
+        <rect x="1413" y="380" width="6" height="14"/>
       </g>
-      <!-- Pine trees LEFT -->
-      <g fill="#2E2820" opacity="0.72">
-        <polygon points="90,310 77,272 103,272"/>
-        <polygon points="90,278 73,240 107,240"/>
-        <polygon points="90,248 75,212 105,212"/>
-        <rect x="87" y="310" width="6" height="14"/>
-
-        <polygon points="140,310 125,265 155,265"/>
-        <polygon points="140,270 122,230 158,230"/>
-        <polygon points="140,236 125,200 155,200"/>
-        <polygon points="140,208 127,178 153,178"/>
-        <rect x="137" y="310" width="6" height="16"/>
-
-        <polygon points="42,310 30,275 54,275"/>
-        <polygon points="42,282 27,248 57,248"/>
-        <polygon points="42,255 29,222 55,222"/>
-        <rect x="39" y="310" width="6" height="14"/>
+      <g fill="#2E2820" opacity="0.65">
+        <polygon points="30,380 17,345 43,345"/>
+        <polygon points="30,352 14,315 46,315"/>
+        <polygon points="30,322 15,288 45,288"/>
+        <rect x="27" y="380" width="6" height="14"/>
+        <polygon points="82,380 66,330 98,330"/>
+        <polygon points="82,336 64,288 100,288"/>
+        <polygon points="82,296 66,252 98,252"/>
+        <polygon points="82,260 68,222 96,222"/>
+        <rect x="79" y="380" width="6" height="16"/>
+        <polygon points="138,380 122,338 154,338"/>
+        <polygon points="138,344 120,300 156,300"/>
+        <polygon points="138,308 122,268 154,268"/>
+        <rect x="135" y="380" width="6" height="14"/>
       </g>
     </svg>
   </div>
@@ -302,12 +281,6 @@ footer{text-align:center;padding:4rem 2rem 2.5rem;border-top:1px solid rgba(160,
     <div class="hero-rule"></div>
     <p class="hero-date">Monday, November 9, 2026</p>
     <p class="hero-location">Edgewood Tahoe Resort <span class="gd">◆</span> South Lake Tahoe, California</p>
-    <div class="countdown" id="countdown">
-      <div class="cd-unit"><span class="cd-num" id="cdD">—</span><span class="cd-label">Days</span></div>
-      <div class="cd-unit"><span class="cd-num" id="cdH">—</span><span class="cd-label">Hours</span></div>
-      <div class="cd-unit"><span class="cd-num" id="cdM">—</span><span class="cd-label">Minutes</span></div>
-      <div class="cd-unit"><span class="cd-num" id="cdS">—</span><span class="cd-label">Seconds</span></div>
-    </div>
   </div>
   <p class="scroll-hint">Scroll ↓</p>
 </section>
@@ -430,7 +403,7 @@ footer{text-align:center;padding:4rem 2rem 2.5rem;border-top:1px solid rgba(160,
 </section>
 
 <!-- GALLERY -->
-<div class="section-alt gal-section" id="gallery">
+<div class="section-alt" id="gallery">
   <p class="eyebrow">Photos</p>
   <h2 class="sec-title">Gallery</h2>
   <div class="sec-rule">◆</div>
