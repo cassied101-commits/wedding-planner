@@ -282,9 +282,8 @@ footer{text-align:center;padding:4rem 2rem 2.5rem;border-top:1px solid rgba(160,
     <p class="hero-date">Monday, November 9, 2026</p>
     <p class="hero-location">Edgewood Tahoe Resort <span class="gd">◆</span> South Lake Tahoe, California</p>
   </div>
-  <p class="scroll-hint">Scroll ↓</p>
+  <p class="scroll-hint">↓</p>
 </section>
-
 
 <!-- SCHEDULE -->
 <section id="schedule">
@@ -303,9 +302,9 @@ footer{text-align:center;padding:4rem 2rem 2.5rem;border-top:1px solid rgba(160,
       <div class="ev-time">5:00–7:00 PM</div>
       <div class="ev-line"></div>
       <div>
-        <div class="ev-name">Family Dinner</div>
+        <div class="ev-name">Dinner</div>
         <div class="ev-venue">Base Camp Pizza Co.</div>
-        <div class="ev-note">1001 Heavenly Village Way, South Lake Tahoe · Casual with layers — sweaters, boots, nice denim. A relaxed evening to settle in and spend time together.</div>
+        <div class="ev-note">Everyone is welcome to join us. Casual with layers — sweaters, boots, nice denim. A relaxed evening to settle in and spend time together.</div>
       </div>
     </li>
     <li class="ev">
@@ -339,12 +338,21 @@ footer{text-align:center;padding:4rem 2rem 2.5rem;border-top:1px solid rgba(160,
       </div>
     </li>
     <li class="ev">
-      <div class="ev-time">4:30–9:30 PM</div>
+      <div class="ev-time">4:30–5:30 PM</div>
       <div class="ev-line"></div>
       <div>
-        <div class="ev-name">Reception</div>
-        <div class="ev-venue">The Edge Restaurant & Lounge</div>
-        <div class="ev-note">Cocktails and light bites at the bar, then an intimate private dinner and celebration. 180 Lake Parkway, Stateline, NV 89449.</div>
+        <div class="ev-name">Cocktails</div>
+        <div class="ev-venue">The Edge Lounge</div>
+        <div class="ev-note">Golden hour and sunset over the lake.</div>
+      </div>
+    </li>
+    <li class="ev">
+      <div class="ev-time">5:30–9:30 PM</div>
+      <div class="ev-line"></div>
+      <div>
+        <div class="ev-name">Dinner</div>
+        <div class="ev-venue">The Edge Restaurant</div>
+        <div class="ev-note">An intimate private dinner and celebration.</div>
       </div>
     </li>
   </ul>
@@ -361,8 +369,7 @@ footer{text-align:center;padding:4rem 2rem 2.5rem;border-top:1px solid rgba(160,
       <h3>Edgewood Tahoe Resort</h3>
       <p>Our ceremony and reception take place here. Staying on property is the most convenient option — no transportation needed, and you'll wake up to stunning lake views. Book early for best availability.</p>
       <p>180 Lake Parkway, Stateline, NV 89449</p>
-      <div class="t-code">Use code <strong>DA1109</strong> for a discounted rate</div><br>
-      <a class="t-link" href="https://edgewoodtahoe.com/#/booking/step-1?data=('h6hd!'edgewood-tahoe-resort'~a8dt*f6fr!'adult'~os.'2'3r6at!2~cn!0~cg.5al7po!'DA1109'~co*gp*rn.3ry*rk*re.5rr*ss.3ax!0~cy*ds!('p8ls*as*st*h8ee4)~my7s8c8ne4)*4~.!%5B3%5D)54!null5%5D~6s.('7!false~8e*%01876543.*_." target="_blank" rel="noopener">Book with Discount Code ↗</a>
+      <div class="t-code">Use promo code <strong>DA1109</strong> for a discounted rate</div>
     </div>
     <div class="t-card">
       <span class="t-tag">Nearby Hotel</span>
@@ -395,10 +402,9 @@ footer{text-align:center;padding:4rem 2rem 2.5rem;border-top:1px solid rgba(160,
   <p class="eyebrow">Gifts</p>
   <h2 class="sec-title">Registry</h2>
   <div class="sec-rule">◆</div>
-  <p class="reg-intro">Your presence at our celebration is the greatest gift of all. For those who wish to honor us with something more, we are registered at the following.</p>
+  <p class="reg-intro">Your presence at our celebration is the greatest gift of all. For those who wish to give something more, we've created a honeymoon fund for our adventures ahead.</p>
   <div class="reg-btns">
-    <a class="reg-btn primary" href="https://www.zola.com/wedding/adelmanwedding2026/registry" target="_blank" rel="noopener">View Registry on Zola</a>
-    <a class="reg-btn" href="https://www.zola.com/wedding/adelmanwedding2026/registry" target="_blank" rel="noopener">Zola Cash Fund</a>
+    <a class="reg-btn primary" href="https://www.zola.com/registry/adelmanwedding2026" target="_blank" rel="noopener">Zola Honeymoon Fund</a>
   </div>
 </section>
 
@@ -461,15 +467,6 @@ footer{text-align:center;padding:4rem 2rem 2.5rem;border-top:1px solid rgba(160,
 </footer>
 
 <script>
-function tick(){
-  const diff=new Date('2026-11-09T16:00:00-08:00')-new Date();
-  if(diff<=0){document.getElementById('countdown').innerHTML='<p style="font-family:Cormorant Garamond,serif;font-style:italic;font-size:1.4rem;color:var(--gold)">Today\'s the day!</p>';return;}
-  document.getElementById('cdD').textContent=Math.floor(diff/86400000);
-  document.getElementById('cdH').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');
-  document.getElementById('cdM').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');
-  document.getElementById('cdS').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');
-}
-tick();setInterval(tick,1000);
 function toggleFaq(el){
   const item=el.parentElement,wasOpen=item.classList.contains('open');
   document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
