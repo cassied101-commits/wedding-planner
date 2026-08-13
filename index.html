@@ -38,7 +38,7 @@ nav a:hover{color:var(--gold)}
   align-items:center;justify-content:center;
   position:relative;overflow:hidden;
   background:var(--linen);
-  padding:7rem 2rem 5rem;
+  padding:7rem 2rem 0;
 }
 .hero-scene{
   position:absolute;inset:0;
@@ -188,8 +188,12 @@ footer{text-align:center;padding:4rem 2rem 2.5rem;border-top:1px solid rgba(160,
 @media(max-width:600px){
   nav{gap:1.2rem}.nav-brand{display:none}
   .hero-names{font-size:clamp(2.8rem,14vw,4rem)}
-  .ev{grid-template-columns:auto 1px 1fr;gap:0 1rem}
-  .ev-time{padding-right:1rem;font-size:0.85rem}
+  .ev{display:grid;grid-template-columns:100px 1px 1fr;gap:0 1rem;padding-bottom:2rem}
+  .ev-time{text-align:right;padding-right:1rem;padding-top:2px;font-size:0.9rem}
+  .ev-line{width:1px}
+  .ev-name{font-size:0.62rem}
+  .ev-venue{font-size:0.95rem}
+  .ev-note{font-size:0.78rem}
   .t-grid{grid-template-columns:1fr}.t-span{grid-column:span 1}
   .gal-grid{grid-template-columns:repeat(2,1fr)}
 }
@@ -200,7 +204,7 @@ footer{text-align:center;padding:4rem 2rem 2.5rem;border-top:1px solid rgba(160,
 <nav>
   <a href="#schedule">Schedule</a>
   <a href="#travel">Travel</a>
-  <a href="#" class="nav-brand">Cassie & Jordan</a>
+  <a href="#" class="nav-brand">Cassandra & Jordan</a>
   <a href="#registry">Registry</a>
   <a href="#faqs">FAQs</a>
 </nav>
@@ -282,7 +286,6 @@ footer{text-align:center;padding:4rem 2rem 2.5rem;border-top:1px solid rgba(160,
     <p class="hero-date">Monday, November 9, 2026</p>
     <p class="hero-location">Edgewood Tahoe Resort <span class="gd">◆</span> South Lake Tahoe, California</p>
   </div>
-  <p class="scroll-hint">↓</p>
 </section>
 
 <!-- SCHEDULE -->
@@ -343,7 +346,7 @@ footer{text-align:center;padding:4rem 2rem 2.5rem;border-top:1px solid rgba(160,
       <div>
         <div class="ev-name">Cocktails</div>
         <div class="ev-venue">The Edge Lounge</div>
-        <div class="ev-note">Golden hour and sunset over the lake.</div>
+        <div class="ev-note">Cocktails and light bites during golden hour.</div>
       </div>
     </li>
     <li class="ev">
@@ -460,10 +463,9 @@ footer{text-align:center;padding:4rem 2rem 2.5rem;border-top:1px solid rgba(160,
       <rect x="26" y="78" width="8" height="10" fill="#1A1815"/>
     </svg>
   </div>
-  <p class="footer-names">Cassie & Jordan</p>
+  <p class="footer-names">Cassandra & Jordan</p>
   <div class="footer-rule"></div>
   <p class="footer-sub">November 9, 2026 <span class="gd">◆</span> South Lake Tahoe, California</p>
-  <p class="footer-domain">adelmanwedding2026.com</p>
 </footer>
 
 <script>
