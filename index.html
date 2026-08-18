@@ -4,197 +4,352 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cassandra Dell & Jordan Adelman — November 9, 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --linen:#F0EAE2;
-  --linen-deep:#E4D9CC;
-  --ink:#1A1815;
-  --ink-light:#4A4540;
-  --gold:#A07840;
-  --white:#FAF6F1;
-}
-html{scroll-behavior:smooth}
-body{background:var(--linen);color:var(--ink);font-family:'Libre Baskerville',Georgia,serif;font-size:15px;line-height:1.7}
-
-/* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;justify-content:center;align-items:center;gap:3rem;
-  padding:1.1rem 2rem;
-  background:rgba(240,234,226,0.96);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(160,120,64,0.18);
-}
-nav a{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-light);text-decoration:none;transition:color 0.2s}
-nav a:hover{color:var(--gold)}
-.nav-brand{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:500;letter-spacing:0.06em;color:var(--ink);text-decoration:none;font-style:italic}
-
-/* HERO */
-.hero{
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  position:relative;overflow:hidden;
-  background:var(--linen);
-  padding:8rem 2rem 16rem;
-}
-.hero-scene{
-  position:absolute;inset:0;
-  pointer-events:none;
-}
-.hero-svg{
-  position:absolute;bottom:0;left:0;
-  width:100%;height:100%;
-}
-.hero-text{
-  position:relative;z-index:2;text-align:center;
-  display:flex;flex-direction:column;align-items:center;
-}
-.hero-names{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(3.6rem,11vw,7.5rem);
-  font-weight:300;line-height:0.9;
-  letter-spacing:0.05em;text-transform:uppercase;
-  color:var(--ink);
-}
-.hero-and{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.3rem,4vw,2.1rem);
-  font-style:italic;font-weight:300;color:var(--ink-light);
-  display:flex;align-items:center;justify-content:center;gap:1.4rem;
-  margin:0.7rem 0 0.5rem;
-}
-.hero-and::before,.hero-and::after{
-  content:'';display:block;
-  width:clamp(50px,9vw,110px);height:1px;
-  background:var(--gold);opacity:0.45;
-}
-.hero-tagline{
-  font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--ink-light);line-height:2.1;margin-top:1.8rem;
-}
-.hero-rule{
-  width:1px;height:30px;background:var(--gold);opacity:0.35;margin:1.5rem auto;
-}
-.hero-date{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.1rem,3vw,1.5rem);
-  letter-spacing:0.08em;color:var(--ink);font-weight:400;
-  border-top:1px solid rgba(160,120,64,0.35);
-  border-bottom:1px solid rgba(160,120,64,0.35);
-  padding:0.5rem 2rem;display:inline-block;
-}
-.hero-location{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(0.95rem,2.5vw,1.2rem);
-  font-style:italic;color:var(--ink-light);margin-top:1rem;
-}
-.gd{color:var(--gold);margin:0 0.5rem}
-.scroll-hint{
-  position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);
-  font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--ink-light);opacity:0.4;
+/* ── TOKENS ── */
+:root {
+  --paper:     #F8F6F1;
+  --ink:       #1B1F3C;
+  --ink-mid:   #3E4268;
+  --ink-light: #72769A;
+  --accent:    #8B3040;
+  --gold:      #9A7038;
+  --rule:      rgba(27,31,60,0.11);
+  --serif:     "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --body:      Georgia, "Palatino Linotype", "Times New Roman", serif;
 }
 
-/* PINE TREE DIVIDER */
-.pine-divider{
-  display:flex;flex-direction:column;align-items:center;
-  margin:0 auto 3.5rem;
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
 }
-.pine-divider svg{width:44px;height:auto;opacity:0.7}
-.pine-divider-line{
-  display:flex;align-items:center;gap:1rem;width:100%;max-width:280px;
-  margin-top:0.9rem;
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: center; align-items: center; gap: 2.8rem;
+  padding: 1rem 2rem;
+  background: rgba(248,246,241,0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
 }
-.pine-divider-line::before,.pine-divider-line::after{
-  content:'';flex:1;height:1px;background:var(--gold);opacity:0.4;
+nav a {
+  font-family: var(--serif);
+  font-size: 0.57rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--ink-light); text-decoration: none; transition: color 0.2s;
 }
-.pine-divider-dot{color:var(--gold);font-size:0.4rem;line-height:1}
+nav a:hover, nav a:focus { color: var(--ink); }
+.nav-brand {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1rem; letter-spacing: 0.03em;
+  color: var(--ink); text-decoration: none;
+}
 
-/* SECTIONS */
-section{max-width:820px;margin:0 auto;padding:5.5rem 2rem}
-.section-alt{background:var(--white);max-width:100%;padding:5.5rem 0}
-.section-alt > *{max-width:820px;margin-left:auto;margin-right:auto;padding-left:2rem;padding-right:2rem}
+/* ── HERO ── */
+.hero {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  padding: 9rem 2rem 0;
+}
+.hero-names {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 10.5vw, 6.8rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.hero-and {
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 3.5vw, 1.9rem);
+  font-style: italic; font-weight: 400;
+  color: var(--ink-mid);
+  display: flex; align-items: center; gap: 1.2rem;
+  margin: 0.65rem 0 0.5rem;
+}
+.hero-and::before, .hero-and::after {
+  content: ''; display: block;
+  width: clamp(40px, 8vw, 100px); height: 1px;
+  background: var(--ink-mid); opacity: 0.28;
+}
+.hero-star {
+  color: var(--accent); font-size: 0.55rem;
+  display: block; margin: 1.5rem 0 1.1rem;
+  letter-spacing: 0;
+}
+.hero-date {
+  font-family: var(--serif);
+  font-size: clamp(0.72rem, 1.8vw, 0.85rem);
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--ink); font-weight: 400;
+}
 
-.eyebrow{font-size:0.58rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:1.1rem}
-.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5.5vw,3rem);font-weight:400;text-align:center;letter-spacing:0.04em;margin-bottom:0}
-.sec-rule{display:flex;align-items:center;justify-content:center;gap:0.9rem;margin:1.8rem auto 3.5rem;color:var(--gold);font-size:0.45rem}
-.sec-rule::before,.sec-rule::after{content:'';display:block;width:80px;height:1px;background:var(--gold);opacity:0.4}
+/* ── HERO RULE ── */
+.hero-rule {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1.2rem;
+  margin: 2.8rem auto 0;
+  width: min(460px, 88%);
+}
+.hero-rule::before, .hero-rule::after {
+  content: ''; flex: 1; height: 1px;
+  background: var(--ink); opacity: 0.14;
+}
+.hero-rule-diamond { color: var(--accent); font-size: 0.5rem; }
 
-/* SCHEDULE */
-.day-wrap{text-align:center;margin-bottom:2.8rem}
-.day-badge{font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-light);border-top:1px solid rgba(160,120,64,0.35);border-bottom:1px solid rgba(160,120,64,0.35);padding:0.4rem 1.4rem;display:inline-block}
-.ev-list{list-style:none;margin-bottom:3.5rem}
-.ev{display:grid;grid-template-columns:150px 1px 1fr;gap:0 2rem;padding-bottom:2.2rem}
-.ev-time{text-align:right;padding-top:2px;padding-right:2rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--ink-light)}
-.ev-line{width:1px;background:var(--gold);opacity:0.3;position:relative;align-self:stretch}
-.ev-line::before{content:'◆';position:absolute;top:3px;left:50%;transform:translateX(-50%);color:var(--gold);font-size:0.4rem;background:var(--linen);padding:3px 0}
-.section-alt .ev-line::before{background:var(--white)}
-.ev:last-child .ev-line{opacity:0}
-.ev-name{font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink);font-weight:700}
-.ev-venue{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--ink-light);margin-top:0.15rem}
-.ev-note{font-size:0.82rem;color:var(--ink-light);margin-top:0.35rem;line-height:1.7}
+/* ── LAYOUT PRIMITIVES ── */
+.section {
+  max-width: 680px; margin: 0 auto;
+  padding: 5rem 2rem;
+}
+.section-alt {
+  padding: 5rem 0;
+  background: rgba(27,31,60,0.028);
+}
+.section-inner {
+  max-width: 680px; margin: 0 auto;
+  padding: 0 2rem;
+}
 
-/* TRAVEL */
-.t-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-.t-span{grid-column:span 2}
-.t-card{border:1px solid rgba(160,120,64,0.28);padding:2.2rem 2rem;background:var(--white)}
-.t-featured{border-color:rgba(160,120,64,0.6);background:var(--linen)}
-.t-tag{font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;display:block}
-.t-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;margin-bottom:0.3rem}
-.t-card p{font-size:0.85rem;color:var(--ink-light);line-height:1.7;margin-top:0.4rem}
-.t-code{display:inline-block;margin-top:0.7rem;background:rgba(160,120,64,0.08);border:1px solid rgba(160,120,64,0.3);padding:0.3rem 0.75rem;font-size:0.78rem;color:var(--ink);letter-spacing:0.07em}
-.t-link{display:inline-block;margin-top:1rem;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(160,120,64,0.4);padding-bottom:2px;transition:color 0.2s,border-color 0.2s}
-.t-link:hover{color:var(--ink);border-color:var(--ink)}
+.eyebrow {
+  font-family: var(--serif);
+  font-size: 0.56rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); text-align: center; margin-bottom: 0.7rem;
+}
+.sec-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 400; text-align: center;
+  letter-spacing: 0.03em; color: var(--ink);
+  text-wrap: balance;
+}
+.sec-divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1rem; margin: 1.6rem auto 3.2rem;
+}
+.sec-divider::before, .sec-divider::after {
+  content: ''; display: block;
+  flex: 0 0 70px; height: 1px;
+  background: var(--ink); opacity: 0.1;
+}
+.sec-divider span { color: var(--accent); font-size: 0.48rem; }
 
-/* REGISTRY */
-.reg-intro{text-align:center;max-width:500px;margin:0 auto 3rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--ink-light);line-height:1.9}
-.reg-btns{display:flex;flex-direction:column;align-items:center;gap:1.1rem}
-.reg-btn{display:inline-block;padding:0.95rem 3.5rem;border:1px solid rgba(160,120,64,0.5);font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink);text-decoration:none;background:transparent;transition:background 0.25s,color 0.25s,border-color 0.25s;min-width:290px;text-align:center}
-.reg-btn:hover{background:var(--gold);color:var(--white);border-color:var(--gold)}
-.reg-btn.primary{background:var(--ink);color:var(--white);border-color:var(--ink)}
-.reg-btn.primary:hover{background:var(--gold);border-color:var(--gold)}
+/* ── SCHEDULE ── */
+.day-label {
+  font-family: var(--serif);
+  font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-light); text-align: center;
+  margin-bottom: 2.2rem;
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+}
+.day-label::before, .day-label::after {
+  content: ''; display: block;
+  width: 36px; height: 1px;
+  background: var(--ink); opacity: 0.14;
+}
 
-/* GALLERY */
-.gal-intro{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:var(--ink-light);margin-bottom:2.5rem}
-.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
-.gal-item{aspect-ratio:1;overflow:hidden;position:relative;background:var(--linen-deep)}
-.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;display:block;filter:sepia(0.15) contrast(0.95)}
-.gal-item:hover img{transform:scale(1.05);filter:sepia(0) contrast(1)}
-.gal-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(26,24,21,0.72));color:#FAF6F1;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.85rem;padding:2.5rem 0.9rem 0.8rem;opacity:0;transition:opacity 0.3s ease}
-.gal-item:hover .gal-cap{opacity:1}
+.ev-list { list-style: none; margin-bottom: 2.5rem; }
+.ev {
+  display: grid;
+  grid-template-columns: 32px 1px 1fr;
+  gap: 0 1.6rem;
+  padding-bottom: 2.2rem;
+  align-items: start;
+}
+.ev-icon {
+  display: flex; align-items: flex-start; justify-content: center;
+  padding-top: 1px; color: var(--ink-mid);
+}
+.ev-icon svg { width: 22px; height: 22px; flex-shrink: 0; }
+.ev-line {
+  width: 1px;
+  background: var(--ink); opacity: 0.1;
+  align-self: stretch; position: relative;
+}
+.ev-line::before {
+  content: '◆';
+  position: absolute; top: 1px; left: 50%; transform: translateX(-50%);
+  font-size: 0.35rem; color: var(--accent);
+  background: var(--paper); padding: 2px 0; line-height: 1;
+}
+.section-alt .ev-line::before { background: #F2F0EA; }
+.ev:last-child .ev-line { opacity: 0; }
+.ev-name {
+  font-family: var(--serif);
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink); font-weight: 700;
+}
+.ev-time {
+  font-family: var(--serif); font-style: italic;
+  font-size: 0.95rem; color: var(--ink-mid); margin-top: 0.08rem;
+}
+.ev-venue {
+  font-family: var(--serif); font-style: italic;
+  font-size: 0.88rem; color: var(--ink-light); margin-top: 0.05rem;
+}
+.ev-note {
+  font-size: 0.8rem; color: var(--ink-light);
+  line-height: 1.65; margin-top: 0.3rem;
+}
 
-/* FAQS */
-.faq-wrap{max-width:640px;margin:0 auto}
-.faq-item{border-top:1px solid rgba(160,120,64,0.22)}
-.faq-item:last-child{border-bottom:1px solid rgba(160,120,64,0.22)}
-.faq-q{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:var(--ink);padding:1.6rem 0;display:flex;justify-content:space-between;align-items:center;gap:1rem;cursor:pointer;user-select:none}
-.faq-q::after{content:'◆';color:var(--gold);font-size:0.45rem;transition:transform 0.3s;flex-shrink:0}
-.faq-item.open .faq-q::after{transform:rotate(45deg)}
-.faq-a{font-size:0.9rem;color:var(--ink-light);line-height:1.85;max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s}
-.faq-item.open .faq-a{max-height:400px;padding-bottom:1.5rem}
+/* Venue bridge between schedule and travel */
+.venue-bridge {
+  text-align: center;
+  border-top: 1px solid var(--rule);
+  padding-top: 3rem; margin-top: 1rem;
+}
+.venue-bridge-star { color: var(--accent); font-size: 0.5rem; display: block; margin-bottom: 1.2rem; }
+.venue-name {
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 3vw, 1.45rem);
+  letter-spacing: 0.04em; color: var(--ink);
+}
+.venue-sub {
+  font-family: var(--serif); font-style: italic;
+  font-size: 0.9rem; color: var(--ink-mid); margin-top: 0.2rem;
+}
+.venue-addr {
+  font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-light); margin-top: 0.4rem;
+}
 
-/* FOOTER */
-footer{text-align:center;padding:4rem 2rem 2.5rem;border-top:1px solid rgba(160,120,64,0.18)}
-.footer-pine{display:flex;justify-content:center;margin-bottom:1.5rem;opacity:0.55}
-.footer-pine svg{width:32px;height:auto}
-.footer-names{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.6rem;color:var(--ink-light);margin-bottom:0.6rem}
-.footer-sub{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);opacity:0.7}
-.footer-rule{width:40px;height:1px;background:var(--gold);opacity:0.35;margin:1.2rem auto}
-.footer-domain{font-size:0.6rem;opacity:0.35;font-style:italic;font-family:'Cormorant Garamond',serif}
+/* ── TRAVEL ── */
+.t-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.t-span { grid-column: span 2; }
+.t-card {
+  border: 1px solid var(--rule);
+  padding: 1.75rem 1.5rem;
+  background: var(--paper);
+}
+.t-featured {
+  border-color: rgba(154,112,56,0.3);
+}
+.t-tag {
+  font-family: var(--serif);
+  font-size: 0.52rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.45rem; display: block;
+}
+.t-card h3 {
+  font-family: var(--serif);
+  font-size: 1.15rem; font-weight: 400; color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+.t-card p { font-size: 0.82rem; color: var(--ink-light); line-height: 1.65; margin-top: 0.35rem; }
+.t-code {
+  display: inline-block; margin-top: 0.7rem;
+  border: 1px solid var(--rule);
+  padding: 0.25rem 0.65rem;
+  font-size: 0.74rem; color: var(--ink); letter-spacing: 0.06em;
+  font-family: var(--serif);
+}
 
-@media(max-width:600px){
-  nav{gap:1.2rem}.nav-brand{display:none}
-  .hero-names{font-size:clamp(2.8rem,14vw,4rem)}
-  .ev{display:grid;grid-template-columns:100px 1px 1fr;gap:0 1rem;padding-bottom:2rem}
-  .ev-time{text-align:right;padding-right:1rem;padding-top:2px;font-size:0.9rem}
-  .ev-line{width:1px}
-  .ev-name{font-size:0.62rem}
-  .ev-venue{font-size:0.95rem}
-  .ev-note{font-size:0.78rem}
-  .t-grid{grid-template-columns:1fr}.t-span{grid-column:span 1}
-  .gal-grid{grid-template-columns:repeat(2,1fr)}
+/* ── REGISTRY ── */
+.reg-intro {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.05rem; color: var(--ink-mid);
+  line-height: 1.9; text-align: center;
+  max-width: 460px; margin: 0 auto 2.8rem;
+}
+.reg-center { display: flex; justify-content: center; }
+.reg-btn {
+  display: inline-block; padding: 0.9rem 3.2rem;
+  background: var(--ink); color: var(--paper);
+  font-family: var(--serif);
+  font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+  text-decoration: none; text-align: center;
+  transition: background 0.2s;
+}
+.reg-btn:hover { background: var(--ink-mid); }
+
+/* ── GALLERY ── */
+.gal-intro {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.05rem; color: var(--ink-light);
+  text-align: center; margin-bottom: 2.2rem;
+}
+.gal-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 3px;
+}
+.gal-item {
+  aspect-ratio: 1; overflow: hidden; position: relative;
+  background: rgba(27,31,60,0.06);
+  display: flex; align-items: center; justify-content: center;
+}
+.gal-item img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.5s ease;
+  filter: sepia(0.08) contrast(0.96);
+  position: absolute; inset: 0;
+}
+.gal-item:hover img { transform: scale(1.05); filter: none; }
+.gal-cap {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(27,31,60,0.72));
+  color: var(--paper);
+  font-family: var(--serif); font-style: italic; font-size: 0.78rem;
+  padding: 2rem 0.8rem 0.65rem;
+  opacity: 0; transition: opacity 0.3s;
+}
+.gal-item:hover .gal-cap { opacity: 1; }
+
+/* ── FAQS ── */
+.faq-wrap { max-width: 600px; margin: 0 auto; }
+.faq-item { border-top: 1px solid var(--rule); }
+.faq-item:last-child { border-bottom: 1px solid var(--rule); }
+.faq-q {
+  font-family: var(--serif);
+  font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+  font-weight: 700; color: var(--ink);
+  padding: 1.5rem 0;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; cursor: pointer; user-select: none;
+}
+.faq-q::after { content: '◆'; color: var(--accent); font-size: 0.42rem; transition: transform 0.3s; flex-shrink: 0; }
+.faq-item.open .faq-q::after { transform: rotate(45deg); }
+.faq-a {
+  font-size: 0.88rem; color: var(--ink-light);
+  line-height: 1.82; max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+}
+.faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.5rem; }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 3.5rem 2rem 2.5rem;
+  border-top: 1px solid var(--rule);
+}
+.footer-pine { display: flex; justify-content: center; margin-bottom: 1.2rem; opacity: 0.4; }
+.footer-pine svg { width: 26px; height: auto; }
+.footer-names {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.35rem; color: var(--ink-mid); margin-bottom: 0.5rem;
+}
+.footer-sub {
+  font-family: var(--serif);
+  font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold);
+}
+.footer-sub .gd { color: var(--accent); margin: 0 0.5rem; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  nav { gap: 1rem; }
+  .nav-brand { display: none; }
+  .t-grid { grid-template-columns: 1fr; }
+  .t-span { grid-column: span 1; }
+  .gal-grid { grid-template-columns: repeat(2,1fr); }
+  .ev { grid-template-columns: 28px 1px 1fr; gap: 0 1rem; }
 }
 </style>
 </head>
@@ -208,236 +363,249 @@ footer{text-align:center;padding:4rem 2rem 2.5rem;border-top:1px solid rgba(160,
   <a href="#faqs">FAQs</a>
 </nav>
 
-<!-- HERO — actual envelope watercolor as background -->
-<section class="hero" id="home">
-  <!-- SVG landscape — sits behind text as absolute layer -->
-  <div class="hero-scene" aria-hidden="true">
-    <svg class="hero-svg" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#E8C8A0" stop-opacity="0.32"/>
-          <stop offset="60%" stop-color="#F0EAE2" stop-opacity="0.10"/>
-          <stop offset="100%" stop-color="#F0EAE2" stop-opacity="0"/>
-        </linearGradient>
-        <linearGradient id="mtGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#B0A090" stop-opacity="0.48"/>
-          <stop offset="100%" stop-color="#B0A090" stop-opacity="0.28"/>
-        </linearGradient>
-        <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#C8B4A0" stop-opacity="0.18"/>
-          <stop offset="100%" stop-color="#F0EAE2" stop-opacity="0"/>
-        </linearGradient>
-      </defs>
-      <rect width="1440" height="600" fill="url(#skyGrad)"/>
-      <polygon points="0,380 90,270 180,320 270,240 370,295 430,260 510,340 560,380 0,380" fill="url(#mtGrad)" opacity="0.7"/>
-      <polygon points="880,380 990,280 1080,320 1170,250 1270,305 1360,268 1440,310 1440,380" fill="url(#mtGrad)" opacity="0.6"/>
-      <polygon points="340,380 480,305 580,335 680,295 780,318 900,305 980,380" fill="#A89880" opacity="0.38"/>
-      <line x1="0" y1="380" x2="1440" y2="380" stroke="#A89880" stroke-width="0.6" opacity="0.35"/>
-      <rect x="0" y="380" width="1440" height="100" fill="url(#waterGrad)"/>
-      <line x1="460" y1="400" x2="980" y2="400" stroke="#A89880" stroke-width="0.5" opacity="0.14"/>
-      <line x1="500" y1="418" x2="940" y2="418" stroke="#A89880" stroke-width="0.5" opacity="0.09"/>
-      <g fill="#2E2820" opacity="0.65">
-        <polygon points="1210,380 1197,344 1223,344"/>
-        <polygon points="1210,350 1193,312 1227,312"/>
-        <polygon points="1210,320 1195,282 1225,282"/>
-        <rect x="1207" y="380" width="6" height="14"/>
-        <polygon points="1262,380 1247,338 1277,338"/>
-        <polygon points="1262,344 1244,300 1280,300"/>
-        <polygon points="1262,308 1246,268 1278,268"/>
-        <polygon points="1262,276 1248,242 1276,242"/>
-        <rect x="1259" y="380" width="6" height="16"/>
-        <polygon points="1318,380 1302,330 1334,330"/>
-        <polygon points="1318,336 1300,288 1336,288"/>
-        <polygon points="1318,296 1302,252 1334,252"/>
-        <polygon points="1318,260 1304,222 1332,222"/>
-        <rect x="1315" y="380" width="6" height="16"/>
-        <polygon points="1370,380 1356,345 1384,345"/>
-        <polygon points="1370,352 1353,315 1387,315"/>
-        <polygon points="1370,322 1355,288 1385,288"/>
-        <rect x="1367" y="380" width="6" height="14"/>
-        <polygon points="1416,380 1404,352 1428,352"/>
-        <polygon points="1416,358 1401,328 1431,328"/>
-        <rect x="1413" y="380" width="6" height="14"/>
-      </g>
-      <g fill="#2E2820" opacity="0.65">
-        <polygon points="30,380 17,345 43,345"/>
-        <polygon points="30,352 14,315 46,315"/>
-        <polygon points="30,322 15,288 45,288"/>
-        <rect x="27" y="380" width="6" height="14"/>
-        <polygon points="82,380 66,330 98,330"/>
-        <polygon points="82,336 64,288 100,288"/>
-        <polygon points="82,296 66,252 98,252"/>
-        <polygon points="82,260 68,222 96,222"/>
-        <rect x="79" y="380" width="6" height="16"/>
-        <polygon points="138,380 122,338 154,338"/>
-        <polygon points="138,344 120,300 156,300"/>
-        <polygon points="138,308 122,268 154,268"/>
-        <rect x="135" y="380" width="6" height="14"/>
-      </g>
-    </svg>
-  </div>
-  <div class="hero-text">
-    <h1 class="hero-names">Cassandra Dell</h1>
-    <div class="hero-and">and</div>
-    <h1 class="hero-names">Jordan Adelman</h1>
-    <p class="hero-date">Monday, November 9, 2026</p>
-    <p class="hero-location">Edgewood Tahoe Resort <span class="gd">◆</span> South Lake Tahoe, California</p>
-  </div>
-</section>
+<!-- ── HERO ── -->
+<div class="hero" id="home">
+  <h1 class="hero-names">Cassandra Dell</h1>
+  <div class="hero-and">and</div>
+  <h1 class="hero-names">Jordan Adelman</h1>
+  <span class="hero-star">◆</span>
+  <p class="hero-date">Monday, November 9, 2026</p>
+</div>
 
-<!-- SCHEDULE -->
-<section id="schedule">
+<!-- ── HERO RULE ── -->
+<div class="hero-rule"><span class="hero-rule-diamond">◆</span></div>
+
+<!-- ── SCHEDULE ── -->
+<section class="section" id="schedule">
   <p class="eyebrow">Celebrate With Us</p>
   <h2 class="sec-title">Weekend Schedule</h2>
-  <div class="pine-divider">
-    <svg viewBox="0 0 60 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="30,2 8,32 18,32 4,55 16,55 2,78 58,78 44,55 56,55 42,32 52,32" fill="#1A1815" opacity="0.65"/>
-      <rect x="26" y="78" width="8" height="10" fill="#1A1815" opacity="0.65"/>
-    </svg>
-    <div class="pine-divider-line"><span class="pine-divider-dot">◆</span></div>
-  </div>
-  <div class="day-wrap"><span class="day-badge">Sunday, November 8, 2026</span></div>
+  <div class="sec-divider"><span>◆</span></div>
+
+  <div class="day-label">Sunday, November 8, 2026</div>
   <ul class="ev-list">
     <li class="ev">
-      <div class="ev-time">5:00–7:00 PM</div>
+      <div class="ev-icon">
+        <!-- Fork & knife -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="8" y1="2" x2="8" y2="22"/>
+          <path d="M5 2v4a3 3 0 0 0 6 0V2"/>
+          <line x1="17" y1="2" x2="17" y2="22"/>
+          <path d="M14 7.5c0-2.5 1.5-5.5 6-5.5v10h-6V7.5z"/>
+        </svg>
+      </div>
       <div class="ev-line"></div>
       <div>
         <div class="ev-name">Dinner</div>
+        <div class="ev-time">5:00–7:00 PM</div>
         <div class="ev-venue">Base Camp Pizza Co.</div>
-        <div class="ev-note">Everyone is welcome to join us. Casual with layers — sweaters, boots, nice denim. A relaxed evening to settle in and spend time together.</div>
+        <div class="ev-note">Everyone is welcome to join. Casual with layers.</div>
       </div>
     </li>
     <li class="ev">
-      <div class="ev-time">8:00–10:00 PM</div>
+      <div class="ev-icon">
+        <!-- Martini glass -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 3l9 9 9-9H3z"/>
+          <line x1="12" y1="12" x2="12" y2="20"/>
+          <line x1="8" y1="20" x2="16" y2="20"/>
+        </svg>
+      </div>
       <div class="ev-line"></div>
       <div>
         <div class="ev-name">Cocktails at the Hotel</div>
+        <div class="ev-time">8:00–10:00 PM</div>
         <div class="ev-venue">The Bistro Edgewood</div>
-        <div class="ev-note">Casual evening attire with layers. Come and go as you please — a relaxed gathering back at the resort.</div>
+        <div class="ev-note">Come and go as you please — a relaxed gathering back at the resort.</div>
       </div>
     </li>
   </ul>
-  <div class="day-wrap"><span class="day-badge">Monday, November 9, 2026</span></div>
+
+  <div class="day-label">Monday, November 9, 2026</div>
   <ul class="ev-list">
     <li class="ev">
-      <div class="ev-time">3:45 PM</div>
+      <div class="ev-icon">
+        <!-- Clock -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/>
+          <polyline points="12 7 12 12 15.5 14"/>
+        </svg>
+      </div>
       <div class="ev-line"></div>
       <div>
         <div class="ev-name">Guest Arrival</div>
+        <div class="ev-time">3:45 PM</div>
         <div class="ev-venue">Edgewood Resort — North Room</div>
         <div class="ev-note">Please arrive early so we can begin on time.</div>
       </div>
     </li>
     <li class="ev">
-      <div class="ev-time">4:00–4:30 PM</div>
+      <div class="ev-icon">
+        <!-- Arch / ceremony -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 21V12a6 6 0 0 1 12 0v9"/>
+          <line x1="3" y1="21" x2="21" y2="21"/>
+        </svg>
+      </div>
       <div class="ev-line"></div>
       <div>
         <div class="ev-name">Ceremony</div>
+        <div class="ev-time">4:00–4:30 PM</div>
         <div class="ev-venue">Edgewood Tahoe — North Room</div>
         <div class="ev-note">Unplugged ceremony — please silence phones and be fully present with us.</div>
       </div>
     </li>
     <li class="ev">
-      <div class="ev-time">4:30–5:30 PM</div>
+      <div class="ev-icon">
+        <!-- Martini glass -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 3l9 9 9-9H3z"/>
+          <line x1="12" y1="12" x2="12" y2="20"/>
+          <line x1="8" y1="20" x2="16" y2="20"/>
+        </svg>
+      </div>
       <div class="ev-line"></div>
       <div>
         <div class="ev-name">Cocktails</div>
+        <div class="ev-time">4:30–5:30 PM</div>
         <div class="ev-venue">The Edge Lounge</div>
         <div class="ev-note">Cocktails and light bites during golden hour.</div>
       </div>
     </li>
     <li class="ev">
-      <div class="ev-time">5:30–9:30 PM</div>
+      <div class="ev-icon">
+        <!-- Sunset -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 18a5 5 0 0 0-10 0"/>
+          <line x1="12" y1="2" x2="12" y2="9"/>
+          <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/>
+          <line x1="1" y1="18" x2="3" y2="18"/>
+          <line x1="21" y1="18" x2="23" y2="18"/>
+          <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/>
+          <line x1="3" y1="21" x2="21" y2="21"/>
+          <line x1="7" y1="24" x2="17" y2="24"/>
+        </svg>
+      </div>
+      <div class="ev-line"></div>
+      <div>
+        <div class="ev-name">Golden Hour &amp; Sunset</div>
+        <div class="ev-venue">Over the lake</div>
+      </div>
+    </li>
+    <li class="ev">
+      <div class="ev-icon">
+        <!-- Fork & knife -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="8" y1="2" x2="8" y2="22"/>
+          <path d="M5 2v4a3 3 0 0 0 6 0V2"/>
+          <line x1="17" y1="2" x2="17" y2="22"/>
+          <path d="M14 7.5c0-2.5 1.5-5.5 6-5.5v10h-6V7.5z"/>
+        </svg>
+      </div>
       <div class="ev-line"></div>
       <div>
         <div class="ev-name">Dinner</div>
+        <div class="ev-time">5:30–9:30 PM</div>
         <div class="ev-venue">The Edge Restaurant</div>
         <div class="ev-note">An intimate private dinner and celebration.</div>
       </div>
     </li>
   </ul>
+
+  <!-- Venue bridge -->
+  <div class="venue-bridge">
+    <span class="venue-bridge-star">◆</span>
+    <p class="venue-name">Edgewood Tahoe Resort</p>
+    <p class="venue-sub">on the shore of South Lake Tahoe</p>
+    <p class="venue-addr">180 Lake Parkway · Stateline, Nevada</p>
+  </div>
 </section>
 
-<!-- TRAVEL -->
+<!-- ── TRAVEL ── -->
 <div class="section-alt" id="travel">
-  <p class="eyebrow">Getting Here</p>
-  <h2 class="sec-title">Travel & Stay</h2>
-  <div class="sec-rule">◆</div>
-  <div class="t-grid">
-    <div class="t-card t-featured t-span">
-      <span class="t-tag">Venue & Recommended Stay</span>
-      <h3>Edgewood Tahoe Resort</h3>
-      <p>Our ceremony and reception take place here. Staying on property is the most convenient option — no transportation needed, and you'll wake up to stunning lake views. Book early for best availability.</p>
-      <p>180 Lake Parkway, Stateline, NV 89449</p>
-      <div class="t-code">Use promo code <strong>DA1109</strong> for a discounted rate</div>
-    </div>
-    <div class="t-card">
-      <span class="t-tag">Nearby Hotel</span>
-      <h3>Marriott Grand Residence Club</h3>
-      <p>In the heart of South Lake Tahoe, walking distance to Heavenly Village — and right where we're hosting our Sunday family dinner.</p>
-      <p>1001 Heavenly Village Way, South Lake Tahoe, CA</p>
-    </div>
-    <div class="t-card">
-      <span class="t-tag">Also Nearby</span>
-      <h3>More Hotels</h3>
-      <p><strong>Caesars Republic Lake Tahoe</strong><br>18 US Highway 50, Stateline, NV</p>
-      <p style="margin-top:0.5rem"><strong>Harrah's Lake Tahoe</strong><br>15 Highway 50, Stateline, NV</p>
-    </div>
-    <div class="t-card">
-      <span class="t-tag">By Air</span>
-      <h3>Nearest Airports</h3>
-      <p><strong>Sacramento (SMF)</strong> — ~2 hours west via US-50. Best flight options and pricing.</p>
-      <p style="margin-top:0.4rem"><strong>Reno-Tahoe (RNO)</strong> — ~1 hour east.</p>
-    </div>
-    <div class="t-card">
-      <span class="t-tag">On the Ground</span>
-      <h3>Getting Around</h3>
-      <p>Limited shuttle service on the wedding day. Rideshare and driving easiest otherwise. Parking available at Edgewood under the Dell/Adelman event.</p>
+  <div class="section-inner">
+    <p class="eyebrow">Getting Here</p>
+    <h2 class="sec-title">Travel &amp; Stay</h2>
+    <div class="sec-divider"><span>◆</span></div>
+    <div class="t-grid">
+      <div class="t-card t-featured t-span">
+        <span class="t-tag">Venue &amp; Recommended Stay</span>
+        <h3>Edgewood Tahoe Resort</h3>
+        <p>Our ceremony and reception take place here. Staying on property is the most convenient option — no transportation needed, and you'll wake up to stunning lake views. Book early for best availability.</p>
+        <p style="margin-top:0.4rem">180 Lake Parkway, Stateline, NV 89449</p>
+        <div class="t-code">Use promo code <strong>DA1109</strong> for a discounted rate</div>
+      </div>
+      <div class="t-card">
+        <span class="t-tag">Nearby Hotel</span>
+        <h3>Marriott Grand Residence Club</h3>
+        <p>In the heart of South Lake Tahoe, walking distance to Heavenly Village — right where we're hosting our Sunday dinner.</p>
+        <p style="margin-top:0.3rem">1001 Heavenly Village Way, South Lake Tahoe, CA</p>
+      </div>
+      <div class="t-card">
+        <span class="t-tag">Also Nearby</span>
+        <h3>More Hotels</h3>
+        <p><strong>Caesars Republic Lake Tahoe</strong><br>18 US Highway 50, Stateline, NV</p>
+        <p style="margin-top:0.4rem"><strong>Harrah's Lake Tahoe</strong><br>15 Highway 50, Stateline, NV</p>
+      </div>
+      <div class="t-card">
+        <span class="t-tag">By Air</span>
+        <h3>Nearest Airports</h3>
+        <p><strong>Sacramento (SMF)</strong> — ~2 hours west via US-50. Best flight options and pricing.</p>
+        <p style="margin-top:0.35rem"><strong>Reno-Tahoe (RNO)</strong> — ~1 hour east.</p>
+      </div>
+      <div class="t-card">
+        <span class="t-tag">On the Ground</span>
+        <h3>Getting Around</h3>
+        <p>Limited shuttle service on the wedding day. Rideshare and driving easiest otherwise. Parking available at Edgewood under the Dell/Adelman event.</p>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- REGISTRY -->
-<section id="registry">
+<!-- ── REGISTRY ── -->
+<section class="section" id="registry">
   <p class="eyebrow">Gifts</p>
   <h2 class="sec-title">Registry</h2>
-  <div class="sec-rule">◆</div>
+  <div class="sec-divider"><span>◆</span></div>
   <p class="reg-intro">Your presence at our celebration is the greatest gift of all. For those who wish to give something more, we've created a honeymoon fund for our adventures ahead.</p>
-  <div class="reg-btns">
-    <a class="reg-btn primary" href="https://www.zola.com/registry/adelmanwedding2026" target="_blank" rel="noopener">Zola Honeymoon Fund</a>
+  <div class="reg-center">
+    <a class="reg-btn" href="https://www.zola.com/registry/adelmanwedding2026" target="_blank" rel="noopener">Zola Honeymoon Fund</a>
   </div>
 </section>
 
-<!-- GALLERY -->
+<!-- ── GALLERY ── -->
 <div class="section-alt" id="gallery">
-  <p class="eyebrow">Photos</p>
-  <h2 class="sec-title">Gallery</h2>
-  <div class="sec-rule">◆</div>
-  <p class="gal-intro">A few of our favorite memories together.</p>
-  <div class="gal-grid">
-    <div class="gal-item"><img src="https://images.zola.com/56855048-9e8e-43d7-929d-cfb301f3d4d7?w=600" alt="The day we said I love you" loading="lazy"><div class="gal-cap">The day we said "I love you"</div></div>
-    <div class="gal-item"><img src="https://images.zola.com/bce2a343-45ba-48ab-9916-529c0c94f746?w=600" alt="Snowy day in Lake Tahoe" loading="lazy"><div class="gal-cap">Snowy day in Lake Tahoe</div></div>
-    <div class="gal-item"><img src="https://images.zola.com/99540df9-e9df-4630-8e5e-cece5fc751a5?w=600" alt="Spanish Steps in Rome" loading="lazy"><div class="gal-cap">Spanish Steps in Rome</div></div>
-    <div class="gal-item"><img src="https://images.zola.com/9634f633-a38d-47d7-8b22-9bfe9d10e599?w=600" alt="Sensoji temple in Japan" loading="lazy"><div class="gal-cap">Sensō-ji temple in Japan</div></div>
-    <div class="gal-item"><img src="https://images.zola.com/e4df72a0-ec05-413b-8edc-986547d533f0?w=600" alt="One of many Carmel trips" loading="lazy"><div class="gal-cap">One of many Carmel trips</div></div>
-    <div class="gal-item"><img src="https://images.zola.com/cf99bf6d-6ce1-487d-9dbc-b0df57d2a5d3?w=600" alt="Our first Christmas as a family" loading="lazy"><div class="gal-cap">Our first Christmas as a family</div></div>
-    <div class="gal-item"><img src="https://images.zola.com/487c317c-e7dd-4188-9568-7a8962d9ba24?w=600" alt="Golden Pavilion in Kyoto" loading="lazy"><div class="gal-cap">Golden Pavilion in Kyoto</div></div>
-    <div class="gal-item"><img src="https://images.zola.com/6009ee63-73b1-460c-a1aa-6f26ce40f948?w=600" alt="Paddleboarding on Lake Natoma" loading="lazy"><div class="gal-cap">Paddleboarding on Lake Natoma</div></div>
-    <div class="gal-item"><img src="https://images.zola.com/ae1d059a-5481-413a-9eec-3e667633def5?w=600" alt="Formula 1 in Las Vegas" loading="lazy"><div class="gal-cap">Formula 1 in Las Vegas</div></div>
-    <div class="gal-item"><img src="https://images.zola.com/ed1a5005-8bdc-4564-b4fd-614831d8aa3a?w=600" alt="Hiking in San Diego" loading="lazy"><div class="gal-cap">Hiking in San Diego</div></div>
-    <div class="gal-item"><img src="https://images.zola.com/3242d957-3b5b-4a0b-a263-ab0c1dd11f7f?w=600" alt="Making our house a home" loading="lazy"><div class="gal-cap">Making our house a home</div></div>
-    <div class="gal-item"><img src="https://images.zola.com/d3add60e-ad30-44c7-8bfc-81d4febd8e5c?w=600" alt="Our first concert" loading="lazy"><div class="gal-cap">Our first concert</div></div>
-    <div class="gal-item"><img src="https://images.zola.com/e9e0d66c-950e-4921-abe4-52a33c6fe61c?w=600" alt="Arno River in Florence" loading="lazy"><div class="gal-cap">Arno River in Florence</div></div>
-    <div class="gal-item"><img src="https://images.zola.com/fd6ea825-a5c0-4090-abf6-40cb69444b1d?w=600" alt="Colosseum in Rome" loading="lazy"><div class="gal-cap">Colosseum in Rome</div></div>
-    <div class="gal-item"><img src="https://images.zola.com/5be37656-b505-41b0-9619-ee5c52dec3ce?w=600" alt="Boboli Gardens in Florence" loading="lazy"><div class="gal-cap">Boboli Gardens in Florence</div></div>
+  <div class="section-inner">
+    <p class="eyebrow">Photos</p>
+    <h2 class="sec-title">Gallery</h2>
+    <div class="sec-divider"><span>◆</span></div>
+    <p class="gal-intro">A few of our favorite memories together.</p>
+  </div>
+  <div style="max-width:740px;margin:0 auto;padding:0">
+    <div class="gal-grid">
+      <div class="gal-item"><img src="https://images.zola.com/56855048-9e8e-43d7-929d-cfb301f3d4d7?w=600" alt="The day we said I love you" loading="lazy"><div class="gal-cap">The day we said "I love you"</div></div>
+      <div class="gal-item"><img src="https://images.zola.com/bce2a343-45ba-48ab-9916-529c0c94f746?w=600" alt="Snowy day in Lake Tahoe" loading="lazy"><div class="gal-cap">Snowy day in Lake Tahoe</div></div>
+      <div class="gal-item"><img src="https://images.zola.com/99540df9-e9df-4630-8e5e-cece5fc751a5?w=600" alt="Spanish Steps in Rome" loading="lazy"><div class="gal-cap">Spanish Steps in Rome</div></div>
+      <div class="gal-item"><img src="https://images.zola.com/9634f633-a38d-47d7-8b22-9bfe9d10e599?w=600" alt="Sensoji temple in Japan" loading="lazy"><div class="gal-cap">Sensō-ji temple in Japan</div></div>
+      <div class="gal-item"><img src="https://images.zola.com/e4df72a0-ec05-413b-8edc-986547d533f0?w=600" alt="One of many Carmel trips" loading="lazy"><div class="gal-cap">One of many Carmel trips</div></div>
+      <div class="gal-item"><img src="https://images.zola.com/cf99bf6d-6ce1-487d-9dbc-b0df57d2a5d3?w=600" alt="Our first Christmas as a family" loading="lazy"><div class="gal-cap">Our first Christmas as a family</div></div>
+      <div class="gal-item"><img src="https://images.zola.com/487c317c-e7dd-4188-9568-7a8962d9ba24?w=600" alt="Golden Pavilion in Kyoto" loading="lazy"><div class="gal-cap">Golden Pavilion in Kyoto</div></div>
+      <div class="gal-item"><img src="https://images.zola.com/6009ee63-73b1-460c-a1aa-6f26ce40f948?w=600" alt="Paddleboarding on Lake Natoma" loading="lazy"><div class="gal-cap">Paddleboarding on Lake Natoma</div></div>
+      <div class="gal-item"><img src="https://images.zola.com/ae1d059a-5481-413a-9eec-3e667633def5?w=600" alt="Formula 1 in Las Vegas" loading="lazy"><div class="gal-cap">Formula 1 in Las Vegas</div></div>
+      <div class="gal-item"><img src="https://images.zola.com/ed1a5005-8bdc-4564-b4fd-614831d8aa3a?w=600" alt="Hiking in San Diego" loading="lazy"><div class="gal-cap">Hiking in San Diego</div></div>
+      <div class="gal-item"><img src="https://images.zola.com/3242d957-3b5b-4a0b-a263-ab0c1dd11f7f?w=600" alt="Making our house a home" loading="lazy"><div class="gal-cap">Making our house a home</div></div>
+      <div class="gal-item"><img src="https://images.zola.com/d3add60e-ad30-44c7-8bfc-81d4febd8e5c?w=600" alt="Our first concert" loading="lazy"><div class="gal-cap">Our first concert</div></div>
+      <div class="gal-item"><img src="https://images.zola.com/e9e0d66c-950e-4921-abe4-52a33c6fe61c?w=600" alt="Arno River in Florence" loading="lazy"><div class="gal-cap">Arno River in Florence</div></div>
+      <div class="gal-item"><img src="https://images.zola.com/fd6ea825-a5c0-4090-abf6-40cb69444b1d?w=600" alt="Colosseum in Rome" loading="lazy"><div class="gal-cap">Colosseum in Rome</div></div>
+      <div class="gal-item"><img src="https://images.zola.com/5be37656-b505-41b0-9619-ee5c52dec3ce?w=600" alt="Boboli Gardens in Florence" loading="lazy"><div class="gal-cap">Boboli Gardens in Florence</div></div>
+    </div>
   </div>
 </div>
 
-<!-- FAQS -->
-<section id="faqs">
+<!-- ── FAQS ── -->
+<section class="section" id="faqs">
   <p class="eyebrow">Questions</p>
   <h2 class="sec-title">FAQs</h2>
-  <div class="sec-rule">◆</div>
+  <div class="sec-divider"><span>◆</span></div>
   <div class="faq-wrap">
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is the best airport to fly into?</div><div class="faq-a">We recommend flying into Sacramento International Airport (SMF). It's about a 2-hour drive to Lake Tahoe and typically offers the best combination of flight options and pricing.</div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is the dress code?</div><div class="faq-a">Cocktail attire — dress to impress. Keep in mind it will be chilly in Tahoe in November, so we recommend bringing a coat or wrap.</div></div>
@@ -447,30 +615,32 @@ footer{text-align:center;padding:4rem 2rem 2.5rem;border-top:1px solid rgba(160,
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Will it snow?</div><div class="faq-a">Snow is unlikely this time of year, but Tahoe weather can be unpredictable. Expect crisp, cool temperatures — especially in the evening.</div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I get around?</div><div class="faq-a">We'll be offering limited shuttle service for the day of the wedding. Outside of that, rideshare and driving are the easiest ways to get around.</div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is everything indoors?</div><div class="faq-a">Yes — all wedding events will be indoors, but there may be short walks between spaces, so plan accordingly for the cold.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">When should I arrive?</div><div class="faq-a">We recommend arriving by Sunday to settle in and join us for the family dinner and welcome drinks.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">When should I arrive?</div><div class="faq-a">We recommend arriving by Sunday to settle in and join us for dinner and welcome drinks.</div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What are some fun things to do in the area?</div><div class="faq-a">Lake Tahoe is beautiful year-round. A few favorites: gondola ride at Heavenly for incredible views, exploring Heavenly Village (shops, restaurants, coffee), and lakeside walks. Note: the golf course will be closed and ski resorts typically won't be open yet.</div></div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ── FOOTER ── -->
 <footer>
   <div class="footer-pine">
     <svg viewBox="0 0 60 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="30,2 8,32 18,32 4,55 16,55 2,78 58,78 44,55 56,55 42,32 52,32" fill="#1A1815"/>
-      <rect x="26" y="78" width="8" height="10" fill="#1A1815"/>
+      <polygon points="30,2 8,32 18,32 4,55 16,55 2,78 58,78 44,55 56,55 42,32 52,32" fill="currentColor"/>
+      <rect x="26" y="78" width="8" height="10" fill="currentColor"/>
     </svg>
   </div>
-  <p class="footer-names">Cassandra & Jordan</p>
-  <div class="footer-rule"></div>
+  <p class="footer-names">Cassandra &amp; Jordan</p>
   <p class="footer-sub">November 9, 2026 <span class="gd">◆</span> South Lake Tahoe, California</p>
 </footer>
 
 <script>
-function toggleFaq(el){
-  const item=el.parentElement,wasOpen=item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
-  if(!wasOpen)item.classList.add('open');
+/* ── FAQ TOGGLE ── */
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
 }
+
 </script>
 </body>
 </html>
