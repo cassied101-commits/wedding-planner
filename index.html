@@ -203,23 +203,22 @@ nav a:hover, nav a:focus { color: var(--ink); }
 }
 
 /* Venue bridge between schedule and travel */
-.venue-bridge {
-  text-align: center;
-  padding: 2rem 2rem 0;
-}
-.venue-bridge-star { color: var(--accent); font-size: 0.5rem; display: block; margin-bottom: 1.2rem; }
+.venue-bridge-star { display: none; }
 .venue-name {
   font-family: var(--serif);
-  font-size: clamp(1.1rem, 3vw, 1.45rem);
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
   letter-spacing: 0.04em; color: var(--ink);
+  text-align: center;
 }
 .venue-sub {
   font-family: var(--serif); font-style: italic;
-  font-size: 0.9rem; color: var(--ink-mid); margin-top: 0.2rem;
+  font-size: 0.88rem; color: var(--ink-mid); margin-top: 0.15rem;
+  text-align: center;
 }
 .venue-addr {
-  font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--ink-light); margin-top: 0.4rem;
+  font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-light); margin-top: 0.35rem;
+  text-align: center;
 }
 
 /* ── TRAVEL ── */
@@ -373,24 +372,19 @@ footer {
   <h1 class="hero-names">Jordan Adelman</h1>
   <span class="hero-star">◆</span>
   <p class="hero-date">Monday, November 9, 2026</p>
-</div>
-
-<!-- ── HERO RULE ── -->
-<div class="hero-rule"><span class="hero-rule-diamond">◆</span></div>
-
-<!-- ── VENUE ── -->
-<div class="venue-bridge">
-  <span class="venue-bridge-star">◆</span>
+  <span class="hero-star">◆</span>
   <p class="venue-name">Edgewood Tahoe Resort</p>
   <p class="venue-sub">on the shore of South Lake Tahoe</p>
   <p class="venue-addr">180 Lake Parkway · Stateline, Nevada</p>
 </div>
 
+<!-- ── RULE ── -->
+<div class="hero-rule"><span class="hero-rule-diamond">◆</span></div>
+
 <!-- ── SCHEDULE ── -->
 <section class="section" id="schedule">
   <p class="eyebrow">Celebrate With Us</p>
   <h2 class="sec-title">Weekend Schedule</h2>
-  <div class="sec-divider"><span>◆</span></div>
 
   <div class="day-label">Sunday, November 8, 2026</div>
   <ul class="ev-list">
