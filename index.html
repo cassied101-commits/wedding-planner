@@ -160,14 +160,16 @@ nav a:hover, nav a:focus { color: var(--ink); }
   display: grid;
   grid-template-columns: 32px 1px 1fr;
   gap: 0 1.6rem;
-  padding-bottom: 2.2rem;
   align-items: start;
 }
+/* Padding lives on the icon and content columns so the line column
+   can stretch through the full row height including the gap */
 .ev-icon {
   display: flex; align-items: flex-start; justify-content: center;
-  padding-top: 1px; color: var(--ink-mid);
+  padding-top: 1px; padding-bottom: 2.2rem; color: var(--ink-mid);
 }
 .ev-icon svg { width: 22px; height: 22px; flex-shrink: 0; }
+.ev-body { padding-bottom: 2.2rem; }
 .ev-line {
   width: 1px;
   background: var(--ink); opacity: 0.1;
@@ -180,7 +182,8 @@ nav a:hover, nav a:focus { color: var(--ink); }
   background: var(--paper); padding: 2px 0; line-height: 1;
 }
 .section-alt .ev-line::before { background: #F2F0EA; }
-.ev:last-child .ev-line { opacity: 0; }
+/* Only hide the line after the very last event (Monday dinner) */
+.ev-list:last-child .ev:last-child .ev-line { opacity: 0; }
 .ev-name {
   font-family: var(--serif);
   font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
@@ -394,7 +397,7 @@ footer {
         </svg>
       </div>
       <div class="ev-line"></div>
-      <div>
+      <div class="ev-body">
         <div class="ev-name">Dinner</div>
         <div class="ev-time">5:00–7:00 PM</div>
         <div class="ev-venue">Base Camp Pizza Co.</div>
@@ -411,7 +414,7 @@ footer {
         </svg>
       </div>
       <div class="ev-line"></div>
-      <div>
+      <div class="ev-body">
         <div class="ev-name">Cocktails at the Hotel</div>
         <div class="ev-time">8:00–10:00 PM</div>
         <div class="ev-venue">The Bistro Edgewood</div>
@@ -431,7 +434,7 @@ footer {
         </svg>
       </div>
       <div class="ev-line"></div>
-      <div>
+      <div class="ev-body">
         <div class="ev-name">Guest Arrival</div>
         <div class="ev-time">3:45 PM</div>
         <div class="ev-venue">Edgewood Resort — North Room</div>
@@ -447,7 +450,7 @@ footer {
         </svg>
       </div>
       <div class="ev-line"></div>
-      <div>
+      <div class="ev-body">
         <div class="ev-name">Ceremony</div>
         <div class="ev-time">4:00–4:30 PM</div>
         <div class="ev-venue">Edgewood Tahoe — North Room</div>
@@ -464,7 +467,7 @@ footer {
         </svg>
       </div>
       <div class="ev-line"></div>
-      <div>
+      <div class="ev-body">
         <div class="ev-name">Cocktails</div>
         <div class="ev-time">4:30–5:30 PM</div>
         <div class="ev-venue">The Edge Lounge</div>
@@ -486,7 +489,7 @@ footer {
         </svg>
       </div>
       <div class="ev-line"></div>
-      <div>
+      <div class="ev-body">
         <div class="ev-name">Golden Hour &amp; Sunset</div>
         <div class="ev-venue">Over the lake</div>
       </div>
@@ -502,7 +505,7 @@ footer {
         </svg>
       </div>
       <div class="ev-line"></div>
-      <div>
+      <div class="ev-body">
         <div class="ev-name">Dinner</div>
         <div class="ev-time">5:30–9:30 PM</div>
         <div class="ev-venue">The Edge Restaurant</div>
