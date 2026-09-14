@@ -197,6 +197,13 @@ nav a:hover, nav a:focus { color: var(--ink); }
   font-family: var(--serif); font-style: italic;
   font-size: 0.88rem; color: var(--ink-light); margin-top: 0.05rem;
 }
+.ev-venue a {
+  color: inherit; text-decoration: underline;
+  text-decoration-color: rgba(114,118,154,0.35);
+  text-underline-offset: 2px;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+.ev-venue a:hover { color: var(--ink); text-decoration-color: var(--ink-mid); }
 .ev-note {
   font-size: 0.8rem; color: var(--ink-light);
   line-height: 1.65; margin-top: 0.3rem;
@@ -402,7 +409,7 @@ footer {
       <div class="ev-body">
         <div class="ev-name">Dinner</div>
         <div class="ev-time">5:00–7:00 PM</div>
-        <div class="ev-venue">Base Camp Pizza Co.</div>
+        <div class="ev-venue"><a href="https://www.basecamppizzaco.com/" target="_blank" rel="noopener">Base Camp Pizza Co.</a></div>
         <div class="ev-note">Everyone is welcome to join. Casual with layers.</div>
       </div>
     </li>
@@ -419,7 +426,7 @@ footer {
       <div class="ev-body">
         <div class="ev-name">Cocktails at the Hotel</div>
         <div class="ev-time">8:00–10:00 PM</div>
-        <div class="ev-venue">The Bistro Edgewood</div>
+        <div class="ev-venue"><a href="https://edgewoodtahoe.com/the-bistro/" target="_blank" rel="noopener">The Bistro Edgewood</a></div>
         <div class="ev-note">Come and go as you please — a relaxed gathering back at the resort.</div>
       </div>
     </li>
@@ -472,7 +479,7 @@ footer {
       <div class="ev-body">
         <div class="ev-name">Cocktails</div>
         <div class="ev-time">4:30–5:30 PM</div>
-        <div class="ev-venue">The Edge Lounge</div>
+        <div class="ev-venue"><a href="https://edgewoodtahoe.com/the-edge-restaurant-lounge/" target="_blank" rel="noopener">The Edge Lounge</a></div>
         <div class="ev-note">Cocktails and light bites during golden hour.</div>
       </div>
     </li>
@@ -510,7 +517,7 @@ footer {
       <div class="ev-body">
         <div class="ev-name">Dinner</div>
         <div class="ev-time">5:30–9:30 PM</div>
-        <div class="ev-venue">The Edge Restaurant</div>
+        <div class="ev-venue"><a href="https://edgewoodtahoe.com/the-edge-restaurant-lounge/" target="_blank" rel="noopener">The Edge Restaurant</a></div>
         <div class="ev-note">An intimate private dinner and celebration.</div>
       </div>
     </li>
