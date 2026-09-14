@@ -252,6 +252,13 @@ nav a:hover, nav a:focus { color: var(--ink); }
   font-size: 1.15rem; font-weight: 400; color: var(--ink);
   margin-bottom: 0.2rem;
 }
+.t-card h3 a, .t-card p a {
+  color: inherit; text-decoration: underline;
+  text-decoration-color: rgba(27,31,60,0.2);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.2s;
+}
+.t-card h3 a:hover, .t-card p a:hover { text-decoration-color: var(--ink); }
 .t-card p { font-size: 0.82rem; color: var(--ink-light); line-height: 1.65; margin-top: 0.35rem; }
 .t-code {
   display: inline-block; margin-top: 0.7rem;
@@ -534,22 +541,22 @@ footer {
     <div class="t-grid">
       <div class="t-card t-featured t-span">
         <span class="t-tag">Venue &amp; Recommended Stay</span>
-        <h3>Edgewood Tahoe Resort</h3>
+        <h3><a href="https://edgewoodtahoe.com/" target="_blank" rel="noopener">Edgewood Tahoe Resort</a></h3>
         <p>Our ceremony and reception take place here. Staying on property is the most convenient option — no transportation needed, and you'll wake up to stunning lake views. Book early for best availability.</p>
         <p style="margin-top:0.4rem">180 Lake Parkway, Stateline, NV 89449</p>
         <div class="t-code">Use promo code <strong>DA1109</strong> for a discounted rate</div>
       </div>
       <div class="t-card">
         <span class="t-tag">Nearby Hotel</span>
-        <h3>Marriott Grand Residence Club</h3>
+        <h3><a href="https://www.marriott.com/en-us/hotels/rnogr-marriott-grand-residence-club-lake-tahoe/overview/" target="_blank" rel="noopener">Marriott Grand Residence Club</a></h3>
         <p>In the heart of South Lake Tahoe, walking distance to Heavenly Village — right where we're hosting our Sunday dinner.</p>
         <p style="margin-top:0.3rem">1001 Heavenly Village Way, South Lake Tahoe, CA</p>
       </div>
       <div class="t-card">
         <span class="t-tag">Also Nearby</span>
         <h3>More Hotels</h3>
-        <p><strong>Caesars Republic Lake Tahoe</strong><br>18 US Highway 50, Stateline, NV</p>
-        <p style="margin-top:0.4rem"><strong>Harrah's Lake Tahoe</strong><br>15 Highway 50, Stateline, NV</p>
+        <p><a href="https://www.caesars.com/caesars-republic-lake-tahoe" target="_blank" rel="noopener"><strong>Caesars Republic Lake Tahoe</strong></a><br>18 US Highway 50, Stateline, NV</p>
+        <p style="margin-top:0.4rem"><a href="https://www.caesars.com/harrahs-tahoe" target="_blank" rel="noopener"><strong>Harrah's Lake Tahoe</strong></a><br>15 Highway 50, Stateline, NV</p>
       </div>
       <div class="t-card">
         <span class="t-tag">By Air</span>
@@ -560,7 +567,7 @@ footer {
       <div class="t-card">
         <span class="t-tag">On the Ground</span>
         <h3>Getting Around</h3>
-        <p>Limited shuttle service on the wedding day. Rideshare and driving easiest otherwise. Parking available at Edgewood under the Dell/Adelman event.</p>
+        <p>Complimentary shuttle services are available for transportation to and from Edgewood to Heavenly Village. Parking available at Edgewood under the Dell/Adelman event.</p>
       </div>
     </div>
   </div>
